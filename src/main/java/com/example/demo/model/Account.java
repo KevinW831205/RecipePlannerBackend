@@ -10,8 +10,8 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String field1;
-    private String field2;
+    private String username;
+    private String password;
 
     public Account() {
     }
@@ -24,19 +24,19 @@ public class Account {
         this.id = id;
     }
 
-    public String getField1() {
-        return field1;
+    public String getUsername() {
+        return username;
     }
 
-    public void setField1(String field1) {
-        this.field1 = field1;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getField2() {
-        return field2;
+    public String getPassword() {
+        return password;
     }
 
-    public void setField2(String field2) {
-        this.field2 = field2;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
