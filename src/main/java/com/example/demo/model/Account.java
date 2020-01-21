@@ -6,6 +6,7 @@ import javax.persistence.*;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @OneToMany
     private Long id;
     private String username;
     private String password;
