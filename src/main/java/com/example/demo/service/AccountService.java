@@ -1,43 +1,43 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Template;
-import com.example.demo.repository.TemplateRepository;
+import com.example.demo.model.Account;
+import com.example.demo.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AccountService {
-    private TemplateRepository templateRepository;
+    private AccountRepository accountRepository;
 
     @Autowired
-    public AccountService(TemplateRepository templateRepository) {
-        this.templateRepository = templateRepository;
+    public AccountService(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
     }
 
-    public Iterable<Template> findAll() {
-        return templateRepository.findAll();
+    public Iterable<Account> findAll() {
+        return accountRepository.findAll();
     }
 
-    public Template findById(Long id){
-        return templateRepository.findById(id).get();
+    public Account findById(Long id){
+        return accountRepository.findById(id).get();
     }
 
-    public Template create(Template template){
-        return templateRepository.save(template);
+    public Account create(Account account){
+        return accountRepository.save(account);
     }
 
-    public Template update(Long id, Template template) {
-        Template templateInDatabase = findById(id);
-        if(templateInDatabase == null){
+    public Account update(Long id, Account account) {
+        Account accountInDatabase = findById(id);
+        if(accountInDatabase == null){
             return null;
         }
-        templateRepository.save(template);
-        return template;
+        accountRepository.save(account);
+        return account;
     }
 
-    public Template delete(Long id) {
-        Template template = findById(id);
-        templateRepository.delete(template);
-        return template;
+    public Account delete(Long id) {
+        Account account = findById(id);
+        accountRepository.delete(account);
+        return account;
     }
 }
