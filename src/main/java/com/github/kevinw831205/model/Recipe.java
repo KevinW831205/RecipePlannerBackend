@@ -15,6 +15,8 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "recipe_generator")
     private Long id;
 
+    String name;
+
     @Column(name = "account_id")
     @NotNull
     private Long accountId;
@@ -109,5 +111,13 @@ public class Recipe {
 
     public void setAverageRating(Double averageRating) {
         this.averageRating = averageRating;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
