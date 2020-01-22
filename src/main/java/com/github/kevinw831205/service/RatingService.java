@@ -18,17 +18,17 @@ public class RatingService {
         return ratingRepository.findAll();
     }
 
-    public Rating findById(Long id){
+    public Rating findById(Long id) {
         return ratingRepository.findById(id).get();
     }
 
-    public Rating create(Rating rating){
+    public Rating create(Rating rating) {
         return ratingRepository.save(rating);
     }
 
     public Rating update(Long id, Rating rating) {
         Rating ratingInDatabase = findById(id);
-        if(ratingInDatabase == null){
+        if (ratingInDatabase == null) {
             return null;
         }
         ratingRepository.save(rating);
@@ -40,4 +40,8 @@ public class RatingService {
         ratingRepository.delete(rating);
         return rating;
     }
+
+//    public Integer countByRecipeId(Long id) {
+//        return ratingRepository.countByRecipeId(id);
+//    }
 }

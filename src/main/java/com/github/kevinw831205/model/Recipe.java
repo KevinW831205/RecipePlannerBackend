@@ -1,5 +1,7 @@
 package com.github.kevinw831205.model;
 
+import org.hibernate.annotations.Formula;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -28,6 +30,15 @@ public class Recipe {
     @OneToMany
     @JoinColumn(name = "recipe_id", referencedColumnName = "recipe_id")
     private List<Rating> ratings;
+    //
+//    @MapKeyClass(value = Rating.class)
+//    @Formula("SELECT COUNT(ra) FROM rating ra WHERE ra.recipe_id = id")
+//    private Integer numberOfRating;
+    @Transient
+    private Integer numberOfRating;
+
+    @Transient
+    private Double averageRating;
 
     public Recipe() {
     }
@@ -70,5 +81,29 @@ public class Recipe {
 
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
+    }
+
+    @Transient
+    public Integer getNumberOfRating() {
+        if(ratings == null){ return null}
+        return this.ratings.size();
+    }
+
+    public void setNumberOfRating(Integer numberOfRating) {
+        this.numberOfRating = numberOfRating;
+    }
+
+    @Transient
+    public Double getAverageRating() {
+        if(ratings == null){ return null}
+        Double sum = 0D;
+        for (Rating rating : ratings) {
+            sum += rating.getRating();
+        }
+        return sum/ratings.size();
+    }
+
+    public void setAverageRating(Double averageRating) {
+        this.averageRating = averageRating;
     }
 }
