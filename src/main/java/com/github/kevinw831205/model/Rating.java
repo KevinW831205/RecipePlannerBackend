@@ -16,6 +16,10 @@ public class Rating {
     @NotNull
     private Long accountId;
 
+    @Column(name="recipe_id")
+    @NotNull
+    private Long recipeId;
+
     private Double rating;
 
     public Rating() {
@@ -45,4 +49,11 @@ public class Rating {
         this.rating = rating;
     }
 
+    public Long getRecipeId() {
+        return recipeId;
+    }
+
+    public void setRecipeId(Long recipeId) {
+        this.recipeId = recipeId;
+    }
 }

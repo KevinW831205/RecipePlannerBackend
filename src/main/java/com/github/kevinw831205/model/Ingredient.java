@@ -9,7 +9,7 @@ public class Ingredient {
     @Id
     @NotNull
     @Column(name = "ingredient_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ingredient_generator")
     private Long id;
 
 

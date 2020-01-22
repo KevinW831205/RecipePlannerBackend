@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@Table(name="recipe")
+@Table(name = "recipe")
 @Entity
 public class Recipe {
     @Id
@@ -25,6 +25,9 @@ public class Recipe {
     @JoinColumn(name = "recipe_id", referencedColumnName = "recipe_id")
     private List<Ingredient> ingredientList;
 
+    @OneToMany
+    @JoinColumn(name = "recipe_id", referencedColumnName = "recipe_id")
+    private List<Rating> ratings;
 
     public Recipe() {
     }
@@ -59,5 +62,13 @@ public class Recipe {
 
     public void setIngredientList(List<Ingredient> ingredientList) {
         this.ingredientList = ingredientList;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
     }
 }
