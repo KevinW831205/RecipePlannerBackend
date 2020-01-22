@@ -85,7 +85,9 @@ public class Recipe {
 
     @Transient
     public Integer getNumberOfRating() {
-        if(ratings == null){ return null}
+        if (ratings == null) {
+            return 0;
+        }
         return this.ratings.size();
     }
 
@@ -95,12 +97,14 @@ public class Recipe {
 
     @Transient
     public Double getAverageRating() {
-        if(ratings == null){ return null}
+        if (ratings == null) {
+            return null;
+        }
         Double sum = 0D;
         for (Rating rating : ratings) {
             sum += rating.getRating();
         }
-        return sum/ratings.size();
+        return sum / ratings.size();
     }
 
     public void setAverageRating(Double averageRating) {
