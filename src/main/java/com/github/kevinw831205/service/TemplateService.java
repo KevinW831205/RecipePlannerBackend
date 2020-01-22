@@ -1,11 +1,9 @@
-package com.example.demo.service;
+package com.github.kevinw831205.service;
 
-import com.example.demo.model.Template;
-import com.example.demo.repository.TemplateRepository;
+import com.github.kevinw831205.model.Template;
+import com.github.kevinw831205.repository.TemplateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class TemplateService {

@@ -1,10 +1,10 @@
-package com.example.demo.model;
+package com.github.kevinw831205.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
-@Table(name = "ACCOUNT")
+@Table(name = "account")
 @Entity
 public class Account {
     @Id

@@ -1,7 +1,6 @@
-package com.example.demo.repository;
+package com.github.kevinw831205.repository;
 
-import com.example.demo.model.Recipe;
-import com.example.demo.model.Template;
+import com.github.kevinw831205.model.Recipe;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

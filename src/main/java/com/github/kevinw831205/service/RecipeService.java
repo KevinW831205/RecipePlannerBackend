@@ -1,9 +1,7 @@
-package com.example.demo.service;
+package com.github.kevinw831205.service;
 
-import com.example.demo.model.Recipe;
-import com.example.demo.model.Template;
-import com.example.demo.repository.RecipeRepository;
-import com.example.demo.repository.TemplateRepository;
+import com.github.kevinw831205.model.Recipe;
+import com.github.kevinw831205.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,9 +1,9 @@
-package com.example.demo.model;
+package com.github.kevinw831205.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Table(name="RECIPE")
+@Table(name="recipe")
 @Entity
 public class Recipe {
     @Id
@@ -12,8 +12,8 @@ public class Recipe {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="authorId", nullable = true)
-    private Long authorId;
+    @JoinColumn(name="account_id")
+    private Long accountId;
 
 
 
@@ -28,11 +28,11 @@ public class Recipe {
         this.id = id;
     }
 
-    public Long getAuthorId() {
-        return authorId;
+    public Long getAccountId() {
+        return accountId;
     }
 
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 }

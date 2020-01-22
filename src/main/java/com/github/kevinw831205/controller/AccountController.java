@@ -1,7 +1,7 @@
-package com.example.demo.controller;
+package com.github.kevinw831205.controller;
 
-import com.example.demo.model.Account;
-import com.example.demo.service.AccountService;
+import com.github.kevinw831205.model.Account;
+import com.github.kevinw831205.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
