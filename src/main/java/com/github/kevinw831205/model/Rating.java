@@ -1,17 +1,21 @@
 package com.github.kevinw831205.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Rating {
     @Id
+    @NotNull
+    @Column(name = "rating_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String field1;
-    private String field2;
+
+    @Column(name = "account_id")
+    @NotNull
+    private Long accountId;
+
+    private Double rating;
 
     public Rating() {
     }
@@ -24,19 +28,19 @@ public class Rating {
         this.id = id;
     }
 
-    public String getField1() {
-        return field1;
+    public Long getAccountId() {
+        return accountId;
     }
 
-    public void setField1(String field1) {
-        this.field1 = field1;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 
-    public String getField2() {
-        return field2;
+    public Double getRating() {
+        return rating;
     }
 
-    public void setField2(String field2) {
-        this.field2 = field2;
+    public void setRating(Double rating) {
+        this.rating = rating;
     }
 }

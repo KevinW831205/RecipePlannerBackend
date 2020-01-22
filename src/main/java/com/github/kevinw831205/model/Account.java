@@ -16,9 +16,13 @@ public class Account {
     private String username;
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     @JoinColumn(name = "account_id", referencedColumnName = "account_id")
     private List<Recipe> recipesCreated;
+
+    @OneToMany
+    @JoinColumn(name = "account_id", referencedColumnName = "account_id")
+    private List<Rating> ratingsGiven;
 
     public Account() {
     }
@@ -53,5 +57,13 @@ public class Account {
 
     public void setRecipesCreated(List<Recipe> recipesCreated) {
         this.recipesCreated = recipesCreated;
+    }
+
+    public List<Rating> getRatingsGiven() {
+        return ratingsGiven;
+    }
+
+    public void setRatingsGiven(List<Rating> ratingsGiven) {
+        this.ratingsGiven = ratingsGiven;
     }
 }
