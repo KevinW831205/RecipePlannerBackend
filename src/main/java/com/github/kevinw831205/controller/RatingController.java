@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@RequestMapping(value = "/rating")
+@RequestMapping(value = "/api/rating")
 @Controller
 public class RatingController {
     private RatingService ratingService;
