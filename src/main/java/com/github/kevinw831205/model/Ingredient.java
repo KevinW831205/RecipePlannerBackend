@@ -1,17 +1,24 @@
 package com.github.kevinw831205.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name="ingredient")
 public class Ingredient {
     @Id
+    @NotNull
+    @Column(name = "ingredient_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String field1;
-    private String field2;
+
+
+    @Column(name = "recipe_id")
+    @NotNull
+    private Long recipeId;
+
+    private String name;
+    private String amount;
 
     public Ingredient() {
     }
@@ -24,19 +31,27 @@ public class Ingredient {
         this.id = id;
     }
 
-    public String getField1() {
-        return field1;
+    public Long getRecipeId() {
+        return recipeId;
     }
 
-    public void setField1(String field1) {
-        this.field1 = field1;
+    public void setRecipeId(Long recipeId) {
+        this.recipeId = recipeId;
     }
 
-    public String getField2() {
-        return field2;
+    public String getName() {
+        return name;
     }
 
-    public void setField2(String field2) {
-        this.field2 = field2;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 }

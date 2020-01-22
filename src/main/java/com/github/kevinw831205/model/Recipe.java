@@ -21,6 +21,10 @@ public class Recipe {
     @JoinColumn(name = "recipe_id", referencedColumnName = "recipe_id")
     private List<Instruction> instructionList;
 
+    @OneToMany
+    @JoinColumn(name = "recipe_id", referencedColumnName = "recipe_id")
+    private List<Ingredient> ingredientList;
+
 
     public Recipe() {
     }
@@ -47,5 +51,13 @@ public class Recipe {
 
     public void setInstructionList(List<Instruction> instructionList) {
         this.instructionList = instructionList;
+    }
+
+    public List<Ingredient> getIngredientList() {
+        return ingredientList;
+    }
+
+    public void setIngredientList(List<Ingredient> ingredientList) {
+        this.ingredientList = ingredientList;
     }
 }
