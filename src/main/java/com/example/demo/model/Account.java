@@ -1,15 +1,21 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Set;
 
+@Table(name = "ACCOUNT")
 @Entity
 public class Account {
     @Id
+    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @OneToMany
     private Long id;
     private String username;
     private String password;
+
+    @OneToMany(mappedBy = "account")
+    private Set<Recipe> recipesCreated;
 
     public Account() {
     }
