@@ -8,13 +8,12 @@ import javax.validation.constraints.NotNull;
 public class Recipe {
     @Id
     @NotNull
+    @Column(name = "recipe_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name="account_id")
+    @Column(name = "account_id")
     private Long accountId;
-
 
 
     public Recipe() {
