@@ -8,7 +8,7 @@ public class Rating {
     @Id
     @NotNull
     @Column(name = "rating_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rating_generator")
     private Long id;
 
     @Column(name = "account_id")

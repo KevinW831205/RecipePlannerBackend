@@ -11,7 +11,7 @@ public class Account {
     @Id
     @NotNull
     @Column(name = "account_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_generator")
     private Long id;
     private String username;
     private String password;
