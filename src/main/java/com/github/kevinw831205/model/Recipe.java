@@ -13,6 +13,7 @@ public class Recipe {
     private Long id;
 
     @Column(name = "account_id")
+    @NotNull
     private Long accountId;
 
 
