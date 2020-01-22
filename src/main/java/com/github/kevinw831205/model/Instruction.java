@@ -53,4 +53,12 @@ public class Instruction {
     public void setInstructionOrder(Integer instructionOrder) {
         this.instructionOrder = instructionOrder;
     }
+
+    public Long getRecipeId() {
+        return recipeId;
+    }
+
+    public void setRecipeId(Long recipeId) {
+        this.recipeId = recipeId;
+    }
 }
