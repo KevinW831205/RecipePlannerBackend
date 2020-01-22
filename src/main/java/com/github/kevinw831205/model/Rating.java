@@ -3,6 +3,7 @@ package com.github.kevinw831205.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@Table(name = "rating")
 @Entity
 public class Rating {
     @Id
@@ -43,4 +44,5 @@ public class Rating {
     public void setRating(Double rating) {
         this.rating = rating;
     }
+
 }

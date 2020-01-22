@@ -2,6 +2,7 @@ package com.github.kevinw831205.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Table(name="recipe")
 @Entity
@@ -15,6 +16,10 @@ public class Recipe {
     @Column(name = "account_id")
     @NotNull
     private Long accountId;
+
+    @OneToMany
+    @JoinColumn(name = "recipe_id", referencedColumnName = "recipe_id")
+    private List<Instruction> instructionList;
 
 
     public Recipe() {
@@ -34,5 +39,13 @@ public class Recipe {
 
     public void setAccountId(Long accountId) {
         this.accountId = accountId;
+    }
+
+    public List<Instruction> getInstructionList() {
+        return instructionList;
+    }
+
+    public void setInstructionList(List<Instruction> instructionList) {
+        this.instructionList = instructionList;
     }
 }

@@ -1,17 +1,23 @@
 package com.github.kevinw831205.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
+@Table(name = "instruction")
 @Entity
 public class Instruction {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
+    @Column(name = "instruction_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "instruction_generator")
     private Long id;
-    private String field1;
-    private String field2;
+
+    @Column(name = "recipe_id")
+    @NotNull
+    private Long recipeId;
+
+    private String instruction;
+    private Integer instructionOrder;
 
     public Instruction() {
     }
@@ -24,19 +30,27 @@ public class Instruction {
         this.id = id;
     }
 
-    public String getField1() {
-        return field1;
+//    public Long getRecipeId() {
+//        return recipeId;
+//    }
+//
+//    public void setRecipeId(Long recipeId) {
+//        this.recipeId = recipeId;
+//    }
+
+    public String getInstruction() {
+        return instruction;
     }
 
-    public void setField1(String field1) {
-        this.field1 = field1;
+    public void setInstruction(String instruction) {
+        this.instruction = instruction;
     }
 
-    public String getField2() {
-        return field2;
+    public Integer getInstructionOrder() {
+        return instructionOrder;
     }
 
-    public void setField2(String field2) {
-        this.field2 = field2;
+    public void setInstructionOrder(Integer instructionOrder) {
+        this.instructionOrder = instructionOrder;
     }
 }
