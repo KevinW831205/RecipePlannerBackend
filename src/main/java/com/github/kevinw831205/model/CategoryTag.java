@@ -19,7 +19,7 @@ public class CategoryTag implements Serializable {
     private String name;
 
     @ManyToMany(mappedBy = "categoryTags",fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    @JsonIgnoreProperties("categoryTags")
+    @JsonIgnoreProperties(value={"categoryTags","ingredientList","instructionList"})
     private Set<Recipe> recipes;
 
     public CategoryTag() {

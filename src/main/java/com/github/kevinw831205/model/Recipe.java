@@ -1,5 +1,6 @@
 package com.github.kevinw831205.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.kevinw831205.repository.CategoryTagRepository;
 import com.github.kevinw831205.repository.RecipeRepository;
@@ -21,7 +22,8 @@ public class Recipe implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "recipe_generator")
     private Long id;
 
-    String name;
+    private String name;
+    private String description;
 
     @Column(name = "account_id")
     @NotNull
@@ -36,6 +38,7 @@ public class Recipe implements Serializable {
     private List<Ingredient> ingredientList;
 
     @OneToMany
+    @JsonIgnore
     @JoinColumn(name = "recipe_id", referencedColumnName = "recipe_id")
     private List<Rating> ratings;
     //
@@ -142,5 +145,13 @@ public class Recipe implements Serializable {
 
     public void setCategoryTags(Set<CategoryTag> categoryTags) {
         this.categoryTags = categoryTags;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
