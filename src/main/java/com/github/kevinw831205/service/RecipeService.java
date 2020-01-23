@@ -1,6 +1,8 @@
 package com.github.kevinw831205.service;
 
+import com.github.kevinw831205.model.CategoryTag;
 import com.github.kevinw831205.model.Recipe;
+import com.github.kevinw831205.repository.CategoryTagRepository;
 import com.github.kevinw831205.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,10 +10,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class RecipeService {
     private RecipeRepository recipeRepository;
+    private CategoryTagRepository categoryTagRepository;
 
     @Autowired
-    public RecipeService(RecipeRepository recipeRepository) {
+    public RecipeService(RecipeRepository recipeRepository, CategoryTagRepository categoryTagRepository) {
         this.recipeRepository = recipeRepository;
+        this.categoryTagRepository = categoryTagRepository;
     }
 
     public Iterable<Recipe> findAll() {
@@ -39,5 +43,12 @@ public class RecipeService {
         Recipe recipe = findById(id);
         recipeRepository.delete(recipe);
         return recipe;
+    }
+
+    public Recipe addTag(Long recipe_id, Long tag_id) {
+        Recipe recipe = recipeRepository.findById(recipe_id).get();
+        CategoryTag categoryTag = categoryTagRepository.findById(tag_id).get();
+        recipe.addTag(categoryTag);
+        return recipeRepository.save(recipe);
     }
 }
