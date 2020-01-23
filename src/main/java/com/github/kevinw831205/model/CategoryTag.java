@@ -18,7 +18,7 @@ public class CategoryTag implements Serializable {
     private Long id;
     private String name;
 
-    @ManyToMany(mappedBy = "categoryTags",fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @ManyToMany(mappedBy = "categoryTags",fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value={"categoryTags","ingredientList","instructionList"})
     private Set<Recipe> recipes;
 
@@ -52,7 +52,7 @@ public class CategoryTag implements Serializable {
     @PreRemove
     public void removeTagFromRecipe(){
         for(Recipe r: recipes){
-            r.getCategoryTags().clear();
+            r.getCategoryTags().remove(this);
         }
     }
 }
