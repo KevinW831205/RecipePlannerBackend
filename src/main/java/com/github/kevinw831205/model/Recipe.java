@@ -123,4 +123,12 @@ public class Recipe {
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<CategoryTag> getCategoryTags() {
+        return categoryTags;
+    }
+
+    public void setCategoryTags(List<CategoryTag> categoryTags) {
+        this.categoryTags = categoryTags;
+    }
 }

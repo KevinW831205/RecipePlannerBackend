@@ -1,16 +1,19 @@
 package com.github.kevinw831205.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
 public class CategoryTag {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
+    @Column(name = "categoryTag_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "categoryTag_generator")
     private Long id;
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "categoryTags")
     private List<Recipe> recipes;
 
     public CategoryTag() {
@@ -39,4 +42,6 @@ public class CategoryTag {
     public void setRecipes(List<Recipe> recipes) {
         this.recipes = recipes;
     }
+
+
 }
