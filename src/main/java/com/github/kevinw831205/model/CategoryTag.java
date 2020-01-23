@@ -48,4 +48,11 @@ public class CategoryTag implements Serializable {
     public void setRecipes(Set<Recipe> recipes) {
         this.recipes = recipes;
     }
+
+    @PreRemove
+    public void removeTagFromRecipe(){
+        for(Recipe r: recipes){
+            r.getCategoryTags().clear();
+        }
+    }
 }
