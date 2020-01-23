@@ -48,7 +48,8 @@ public class RecipeService {
     public Recipe addTag(Long recipe_id, Long tag_id) {
         Recipe recipe = recipeRepository.findById(recipe_id).get();
         CategoryTag categoryTag = categoryTagRepository.findById(tag_id).get();
-        recipe.addTag(categoryTag);
+        recipe.getCategoryTags().add(categoryTag);
+//        categoryTag.addRecipe(recipe);
         return recipeRepository.save(recipe);
     }
 }

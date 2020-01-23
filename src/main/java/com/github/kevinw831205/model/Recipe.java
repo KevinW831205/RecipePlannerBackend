@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Table(name = "recipe")
 @Entity
-public class Recipe {
+public class Recipe implements Serializable {
     @Id
     @NotNull
     @Column(name = "recipe_id")
@@ -45,8 +47,13 @@ public class Recipe {
     @Transient
     private Double averageRating;
 
-    @ManyToMany
-    private List<CategoryTag> categoryTags;
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+//    @JoinTable(
+//            name="recipe_categoryTag",
+//            joinColumns = {@JoinColumn(name = "recipe_id")},
+//            inverseJoinColumns = {@JoinColumn(name="categoryTag_id")}
+//    )
+//    private Set<CategoryTag> categoryTags;
 
     public Recipe() {
     }
@@ -127,15 +134,5 @@ public class Recipe {
         this.name = name;
     }
 
-    public List<CategoryTag> getCategoryTags() {
-        return categoryTags;
-    }
 
-    public void setCategoryTags(List<CategoryTag> categoryTags) {
-        this.categoryTags = categoryTags;
-    }
-
-    public void addTag(CategoryTag categoryTag){
-        this.categoryTags.add(categoryTag);
-    }
 }
