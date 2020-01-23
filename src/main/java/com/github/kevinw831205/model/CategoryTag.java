@@ -1,9 +1,6 @@
 package com.github.kevinw831205.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -13,7 +10,7 @@ public class CategoryTag {
     private Long id;
     private String name;
 
-
+    @ManyToMany
     private List<Recipe> recipes;
 
     public CategoryTag() {

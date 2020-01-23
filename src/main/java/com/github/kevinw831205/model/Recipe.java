@@ -42,6 +42,9 @@ public class Recipe {
     @Transient
     private Double averageRating;
 
+    @ManyToMany
+    private List<CategoryTag> categoryTags;
+
     public Recipe() {
     }
 
