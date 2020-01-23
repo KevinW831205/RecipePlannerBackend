@@ -1,5 +1,6 @@
 package com.github.kevinw831205.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.kevinw831205.repository.CategoryTagRepository;
 import com.github.kevinw831205.repository.RecipeRepository;
 import org.hibernate.annotations.Formula;
@@ -47,13 +48,14 @@ public class Recipe implements Serializable {
     @Transient
     private Double averageRating;
 
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-//    @JoinTable(
-//            name="recipe_categoryTag",
-//            joinColumns = {@JoinColumn(name = "recipe_id")},
-//            inverseJoinColumns = {@JoinColumn(name="categoryTag_id")}
-//    )
-//    private Set<CategoryTag> categoryTags;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinTable(
+            name="recipe_categoryTag",
+            joinColumns = {@JoinColumn(name = "recipe_id")},
+            inverseJoinColumns = {@JoinColumn(name="categoryTag_id")}
+    )
+    @JsonIgnoreProperties("recipes")
+    private Set<CategoryTag> categoryTags;
 
     public Recipe() {
     }
@@ -134,5 +136,11 @@ public class Recipe implements Serializable {
         this.name = name;
     }
 
+    public Set<CategoryTag> getCategoryTags() {
+        return categoryTags;
+    }
 
+    public void setCategoryTags(Set<CategoryTag> categoryTags) {
+        this.categoryTags = categoryTags;
+    }
 }

@@ -1,5 +1,7 @@
 package com.github.kevinw831205.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -16,8 +18,9 @@ public class CategoryTag implements Serializable {
     private Long id;
     private String name;
 
-//    @ManyToMany(mappedBy = "categoryTags",fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-//    private Set<Recipe> recipes;
+    @ManyToMany(mappedBy = "categoryTags",fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JsonIgnoreProperties("categoryTags")
+    private Set<Recipe> recipes;
 
     public CategoryTag() {
     }
@@ -38,5 +41,11 @@ public class CategoryTag implements Serializable {
         this.name = name;
     }
 
+    public Set<Recipe> getRecipes() {
+        return recipes;
+    }
 
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
+    }
 }
