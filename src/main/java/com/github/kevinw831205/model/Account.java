@@ -15,6 +15,7 @@ public class Account {
     private Long id;
     private String username;
     private String password;
+    private Boolean isAdmin;
 
     @OneToMany
     @JoinColumn(name = "account_id", referencedColumnName = "account_id")
@@ -66,4 +67,13 @@ public class Account {
     public void setRatingsGiven(List<Rating> ratingsGiven) {
         this.ratingsGiven = ratingsGiven;
     }
+
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
+    }
+
 }
