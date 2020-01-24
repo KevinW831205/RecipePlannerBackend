@@ -17,12 +17,10 @@ public class Account {
     private String password;
     private Boolean isAdmin;
 
-    @OneToMany
-    @JoinColumn(name = "account_id", referencedColumnName = "account_id")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "accountId")
     private List<Recipe> recipesCreated;
 
-    @OneToMany
-    @JoinColumn(name = "account_id", referencedColumnName = "account_id")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "accountId")
     private List<Rating> ratingsGiven;
 
     public Account() {
