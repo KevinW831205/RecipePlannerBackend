@@ -13,7 +13,7 @@ public class Instruction {
     private Long id;
 
     @Column(name = "recipe_id")
-//    @NotNull
+    @NotNull
     private Long recipeId;
 
     private String instruction;

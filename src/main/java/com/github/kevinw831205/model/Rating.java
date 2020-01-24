@@ -17,7 +17,7 @@ public class Rating {
     private Long accountId;
 
     @Column(name="recipe_id")
-//    @NotNull
+    @NotNull
     private Long recipeId;
 
     private Double rating;

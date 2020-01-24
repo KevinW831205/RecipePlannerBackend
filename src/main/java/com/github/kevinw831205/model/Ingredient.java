@@ -14,7 +14,7 @@ public class Ingredient {
 
 
     @Column(name = "recipe_id")
-//    @NotNull
+    @NotNull
     private Long recipeId;
 
     private String name;
