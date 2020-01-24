@@ -5,6 +5,7 @@ import com.github.kevinw831205.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -29,27 +30,27 @@ public class RecipeService {
     }
 
     public List<Recipe> findAllPublished() {
-         Iterable<Recipe> allRecipes = recipeRepository.findAll();
-         List<Recipe> publishedRecipes = StreamSupport.stream(allRecipes.spliterator(),false)
-                 .filter(r -> r.getPublished().equals(true))
-                 .collect(Collectors.toList());
+        Iterable<Recipe> allRecipes = recipeRepository.findAll();
+        List<Recipe> publishedRecipes = StreamSupport.stream(allRecipes.spliterator(), false)
+                .filter(r -> r.getPublished().equals(true))
+                .collect(Collectors.toList());
 
-         return publishedRecipes;
+        return publishedRecipes;
 
 //        return null;
     }
 
-    public Recipe findById(Long id){
+    public Recipe findById(Long id) {
         return recipeRepository.findById(id).get();
     }
 
-    public Recipe create(Recipe recipe){
+    public Recipe create(Recipe recipe) {
         return recipeRepository.save(recipe);
     }
 
     public Recipe update(Long id, Recipe recipe) {
         Recipe recipeInDatabase = findById(id);
-        if(recipeInDatabase == null){
+        if (recipeInDatabase == null) {
             return null;
         }
         recipeRepository.save(recipe);
@@ -58,22 +59,27 @@ public class RecipeService {
 
     public Recipe delete(Long id) {
         Recipe recipe = findById(id);
-        Set<CategoryTag> tags = recipe.getCategoryTags();
-        for(CategoryTag tag:tags){
-            categoryTagRepository.delete(tag);
-        }
-        List<Rating> ratings = recipe.getRatings();
-        for(Rating r : ratings){
-            ratingRepository.delete(r);
-        }
-        List<Instruction> instructions = recipe.getInstructionList();
-        for(Instruction i : instructions){
-            instructionRepository.delete(i);
-        }
-        List<Ingredient> ingredients = recipe.getIngredientList();
-        for(Ingredient i : ingredients){
-            ingredientRepository.delete(i);
-        }
+//        Iterator<CategoryTag> tagsIterator = recipe.getCategoryTags().iterator();
+//        while (tagsIterator.hasNext()) {
+//            categoryTagRepository.delete(tagsIterator.next());
+//        }
+//        Iterator<Rating> ratingsIterator = recipe.getRatings().iterator();
+//        while (ratingsIterator.hasNext()) {
+//            ratingRepository.delete(ratingsIterator.next());
+//        }
+//        Iterator<Instruction> instructionsIterator = recipe.getInstructionList().iterator();
+//        while(instructionsIterator.hasNext()) {
+//            instructionRepository.delete(instructionsIterator.next());
+//        }
+//        Iterator<Ingredient> ingredientsIterator = recipe.getIngredientList().iterator();
+//        while(ingredientsIterator.hasNext()) {
+//            ingredientRepository.delete(ingredientsIterator.next());
+//        }
+
+        categoryTagRepository.deleteAll(recipe.getCategoryTags());
+        ratingRepository.deleteAll(recipe.getRatings());
+        instructionRepository.deleteAll(recipe.getInstructionList());
+        ingredientRepository.deleteAll(recipe.getIngredientList());
 
         recipeRepository.delete(recipe);
         return recipe;
