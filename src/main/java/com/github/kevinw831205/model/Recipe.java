@@ -24,6 +24,7 @@ public class Recipe implements Serializable {
 
     private String name;
     private String description;
+    private Boolean isPublished;
 
     @Column(name = "account_id")
     @NotNull
@@ -153,5 +154,13 @@ public class Recipe implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean getPublished() {
+        return isPublished;
+    }
+
+    public void setPublished(Boolean published) {
+        isPublished = published;
     }
 }

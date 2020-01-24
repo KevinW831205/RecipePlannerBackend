@@ -22,6 +22,10 @@ public class RecipeService {
         return recipeRepository.findAll();
     }
 
+    public Iterable<Recipe> findAllPublished() {
+        return null;
+    }
+
     public Recipe findById(Long id){
         return recipeRepository.findById(id).get();
     }
@@ -49,7 +53,6 @@ public class RecipeService {
         Recipe recipe = recipeRepository.findById(recipe_id).get();
         CategoryTag categoryTag = categoryTagRepository.findById(tag_id).get();
         recipe.getCategoryTags().add(categoryTag);
-//        categoryTag.addRecipe(recipe);
         return recipeRepository.save(recipe);
     }
 }
