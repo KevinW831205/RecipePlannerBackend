@@ -163,4 +163,12 @@ public class Recipe implements Serializable {
     public void setPublished(Boolean published) {
         isPublished = published;
     }
+
+//    @PreRemove
+//    public void removeListItems(){
+//        this.ingredientList.clear();
+//        this.ratings.clear();
+//        this.instructionList.clear();
+//        this.categoryTags.clear();
+//    }
 }

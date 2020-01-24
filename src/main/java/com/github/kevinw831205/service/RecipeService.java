@@ -58,22 +58,22 @@ public class RecipeService {
 
     public Recipe delete(Long id) {
         Recipe recipe = findById(id);
-//        Set<CategoryTag> tags = recipe.getCategoryTags();
-//        for(CategoryTag tag:tags){
-//            categoryTagRepository.delete(tag);
-//        }
-//        List<Rating> ratings = recipe.getRatings();
-//        for(Rating r : ratings){
-//            ratingRepository.delete(r);
-//        }
-//        List<Instruction> instructions = recipe.getInstructionList();
-//        for(Instruction i : instructions){
-//            instructionRepository.delete(i);
-//        }
-//        List<Ingredient> ingredients = recipe.getIngredientList();
-//        for(Ingredient i : ingredients){
-//            ingredientRepository.delete(i);
-//        }
+        Set<CategoryTag> tags = recipe.getCategoryTags();
+        for(CategoryTag tag:tags){
+            categoryTagRepository.delete(tag);
+        }
+        List<Rating> ratings = recipe.getRatings();
+        for(Rating r : ratings){
+            ratingRepository.delete(r);
+        }
+        List<Instruction> instructions = recipe.getInstructionList();
+        for(Instruction i : instructions){
+            instructionRepository.delete(i);
+        }
+        List<Ingredient> ingredients = recipe.getIngredientList();
+        for(Ingredient i : ingredients){
+            ingredientRepository.delete(i);
+        }
 
         recipeRepository.delete(recipe);
         return recipe;
