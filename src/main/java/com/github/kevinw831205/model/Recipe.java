@@ -52,7 +52,7 @@ public class Recipe implements Serializable {
     @Transient
     private Double averageRating;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "recipe_categoryTag",
             joinColumns = {@JoinColumn(name = "recipe_id")},

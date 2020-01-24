@@ -5,6 +5,8 @@ import com.github.kevinw831205.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -65,35 +67,32 @@ public class RecipeService {
 
     public Recipe delete(Long id) {
         Recipe recipe = findById(id);
-//        Iterator<CategoryTag> tagsIterator = recipe.getCategoryTags().iterator();
-//        while (tagsIterator.hasNext()) {
-//            categoryTagRepository.delete(tagsIterator.next());
-//        }
-//        Iterator<Rating> ratingsIterator = recipe.getRatings().iterator();
-//        while (ratingsIterator.hasNext()) {
-//            ratingRepository.delete(ratingsIterator.next());
-//        }
-//        Iterator<Instruction> instructionsIterator = recipe.getInstructionList().iterator();
-//        while(instructionsIterator.hasNext()) {
-//            instructionRepository.delete(instructionsIterator.next());
-//        }
-//        Iterator<Ingredient> ingredientsIterator = recipe.getIngredientList().iterator();
-//        while(ingredientsIterator.hasNext()) {
-//            ingredientRepository.delete(ingredientsIterator.next());
-//        }
-
-        Map<CrudRepository<?, Long>,Iterable> deleteMap = new ConcurrentHashMap<>();
-        deleteMap.put(categoryTagRepository ,recipe.getCategoryTags());
-        deleteMap.put(ingredientRepository, recipe.getIngredientList());
-        deleteMap.put(instructionRepository, recipe.getInstructionList());
-        deleteMap.put(ratingRepository, recipe.getRatings());
-
-        Set<CrudRepository<?,Long>> repositorySet = deleteMap.keySet();
-        Iterator<CrudRepository<?,Long>> deleteIterator = repositorySet.iterator();
-        while(deleteIterator.hasNext()){
-            CrudRepository<?,Long> deleteRepo = deleteIterator.next();
-            deleteRepo.deleteAll(deleteMap.get(deleteRepo));
+        Iterator<Rating> ratingsIterator = recipe.getRatings().iterator();
+        while (ratingsIterator.hasNext()) {
+            ratingRepository.delete(ratingsIterator.next());
         }
+        Iterator<Instruction> instructionsIterator = recipe.getInstructionList().iterator();
+        while(instructionsIterator.hasNext()) {
+            instructionRepository.delete(instructionsIterator.next());
+        }
+        Iterator<Ingredient> ingredientsIterator = recipe.getIngredientList().iterator();
+        while(ingredientsIterator.hasNext()) {
+            ingredientRepository.delete(ingredientsIterator.next());
+        }
+
+
+//        Map<CrudRepository<?, Long>,Iterable> deleteMap = new ConcurrentHashMap<>();
+//        deleteMap.put(categoryTagRepository ,recipe.getCategoryTags());
+//        deleteMap.put(ingredientRepository, recipe.getIngredientList());
+//        deleteMap.put(instructionRepository, recipe.getInstructionList());
+//        deleteMap.put(ratingRepository, recipe.getRatings());
+//
+//        Set<CrudRepository<?,Long>> repositorySet = deleteMap.keySet();
+//        Iterator<CrudRepository<?,Long>> deleteIterator = repositorySet.iterator();
+//        while(deleteIterator.hasNext()){
+//            CrudRepository<?,Long> deleteRepo = deleteIterator.next();
+//            deleteRepo.deleteAll(deleteMap.get(deleteRepo));
+//        }
 
 
 //        categoryTagRepository.deleteAll(recipe.getCategoryTags());
