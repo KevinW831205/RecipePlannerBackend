@@ -2,10 +2,7 @@ package com.github.kevinw831205.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.github.kevinw831205.repository.CategoryTagRepository;
-import com.github.kevinw831205.repository.RecipeRepository;
-import org.hibernate.annotations.Formula;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
