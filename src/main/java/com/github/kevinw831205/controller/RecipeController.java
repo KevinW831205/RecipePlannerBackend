@@ -25,6 +25,13 @@ public class RecipeController {
         return response;
     }
 
+    @RequestMapping(value="/published", method = RequestMethod.GET)
+    public ResponseEntity<?> findAllPublished(){
+        Iterable<Recipe> publishedEntity = recipeService.findAllPublished();
+        ResponseEntity<?> response = new ResponseEntity<>(publishedEntity,HttpStatus.OK);
+        return response;
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> findById(@PathVariable Long id){
         Recipe entity = recipeService.findById(id);
