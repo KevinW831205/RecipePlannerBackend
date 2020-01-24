@@ -30,17 +30,14 @@ public class Recipe implements Serializable {
     @NotNull
     private Long accountId;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "recipe_id", referencedColumnName = "recipe_id")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "recipeId")
     private List<Instruction> instructionList;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "recipe_id", referencedColumnName = "recipe_id")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "recipeId")
     private List<Ingredient> ingredientList;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "recipeId")
     @JsonIgnore
-    @JoinColumn(name = "recipe_id", referencedColumnName = "recipe_id")
     private List<Rating> ratings;
     //
 //    @MapKeyClass(value = Rating.class)
@@ -52,7 +49,7 @@ public class Recipe implements Serializable {
     @Transient
     private Double averageRating;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "recipe_categoryTag",
             joinColumns = {@JoinColumn(name = "recipe_id")},

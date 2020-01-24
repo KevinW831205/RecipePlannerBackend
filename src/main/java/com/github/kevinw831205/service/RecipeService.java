@@ -67,20 +67,24 @@ public class RecipeService {
 
     public Recipe delete(Long id) {
         Recipe recipe = findById(id);
-        Iterator<Rating> ratingsIterator = recipe.getRatings().iterator();
-        while (ratingsIterator.hasNext()) {
-            ratingRepository.delete(ratingsIterator.next());
-        }
-        Iterator<Instruction> instructionsIterator = recipe.getInstructionList().iterator();
-        while(instructionsIterator.hasNext()) {
-            instructionRepository.delete(instructionsIterator.next());
-        }
-        Iterator<Ingredient> ingredientsIterator = recipe.getIngredientList().iterator();
-        while(ingredientsIterator.hasNext()) {
-            ingredientRepository.delete(ingredientsIterator.next());
-        }
 
+//        Iterator<Rating> ratingsIterator = recipe.getRatings().iterator();
+//        while (ratingsIterator.hasNext()) {
+//            System.out.println("delete rating");
+//            ratingRepository.delete(ratingsIterator.next());
+//        }
+//        Iterator<Instruction> instructionsIterator = recipe.getInstructionList().iterator();
+//        while(instructionsIterator.hasNext()) {
+//            System.out.println("delete instruction");
+//            instructionRepository.delete(instructionsIterator.next());
+//        }
+//        Iterator<Ingredient> ingredientsIterator = recipe.getIngredientList().iterator();
+//        while(ingredientsIterator.hasNext()) {
+//            System.out.println("delete ingredients");
+//            ingredientRepository.delete(ingredientsIterator.next());
+//        }
 
+//
 //        Map<CrudRepository<?, Long>,Iterable> deleteMap = new ConcurrentHashMap<>();
 //        deleteMap.put(categoryTagRepository ,recipe.getCategoryTags());
 //        deleteMap.put(ingredientRepository, recipe.getIngredientList());
@@ -95,7 +99,9 @@ public class RecipeService {
 //        }
 
 
-//        categoryTagRepository.deleteAll(recipe.getCategoryTags());
+
+//
+//
 //        ratingRepository.deleteAll(recipe.getRatings());
 //        instructionRepository.deleteAll(recipe.getInstructionList());
 //        ingredientRepository.deleteAll(recipe.getIngredientList());
