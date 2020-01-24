@@ -7,6 +7,10 @@ import com.github.kevinw831205.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 @Service
 public class RecipeService {
     private RecipeRepository recipeRepository;
@@ -22,8 +26,15 @@ public class RecipeService {
         return recipeRepository.findAll();
     }
 
-    public Iterable<Recipe> findAllPublished() {
-        return null;
+    public List<Recipe> findAllPublished() {
+         Iterable<Recipe> allRecipes = recipeRepository.findAll();
+         List<Recipe> publishedRecipes = StreamSupport.stream(allRecipes.spliterator(),false)
+                 .filter(r -> r.getPublished().equals(true))
+                 .collect(Collectors.toList());
+
+         return publishedRecipes;
+
+//        return null;
     }
 
     public Recipe findById(Long id){
