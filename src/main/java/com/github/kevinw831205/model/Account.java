@@ -1,5 +1,7 @@
 package com.github.kevinw831205.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
@@ -18,7 +20,8 @@ public class Account {
     private String password;
     private Boolean isAdmin;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "accountId")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "account")
+    @JsonIgnoreProperties(value={"account"})
     private List<Recipe> recipesCreated;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "accountId")

@@ -29,7 +29,8 @@ public class Recipe implements Serializable {
 //    private Long accountId;
 
     @ManyToOne
-    @JsonIgnoreProperties(value={"password","isAdmin","recipesCreated,ratingsGiven"})
+    @JoinColumn(name="accountId")
+    @JsonIgnoreProperties(value={"password","isAdmin","recipesCreated","ratingsGiven"})
     private Account account;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "recipeId")

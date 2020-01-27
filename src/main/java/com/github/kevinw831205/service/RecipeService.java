@@ -49,8 +49,6 @@ public class RecipeService {
     }
 
     public Recipe create(Recipe recipe) {
-        Account account = accountRepository.findById(recipe.getAccountId()).get();
-        recipe.setAccount(account);
         return recipeRepository.save(recipe);
     }
 
