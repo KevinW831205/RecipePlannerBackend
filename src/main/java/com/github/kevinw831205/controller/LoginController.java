@@ -1,5 +1,7 @@
 package com.github.kevinw831205.controller;
 
+import com.github.kevinw831205.model.Account;
+import com.github.kevinw831205.model.Login;
 import com.github.kevinw831205.model.Template;
 import com.github.kevinw831205.service.LoginService;
 import com.github.kevinw831205.service.TemplateService;
@@ -24,9 +26,11 @@ public class LoginController {
 
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<?> validateLogin(@RequestBody Template template){
-        Template responseBody = loginService.create(template);
+    public ResponseEntity<?> validateLogin(@RequestBody Login login){
+        Template responseBody = loginService.validateLogin(login);
         ResponseEntity<?> responseEntity = new ResponseEntity<>(responseBody ,HttpStatus.CREATED);
+
+//        HttpStatus.FORBIDDEN
         return responseEntity;
     }
 
