@@ -17,20 +17,13 @@ import java.util.stream.StreamSupport;
 public class RecipeService {
     private RecipeRepository recipeRepository;
     private CategoryTagRepository categoryTagRepository;
-    private RatingRepository ratingRepository;
-    private InstructionRepository instructionRepository;
-    private IngredientRepository ingredientRepository;
 
-    public RecipeService(RecipeRepository recipeRepository, CategoryTagRepository categoryTagRepository, RatingRepository ratingRepository, InstructionRepository instructionRepository, IngredientRepository ingredientRepository) {
+    public RecipeService(RecipeRepository recipeRepository, CategoryTagRepository categoryTagRepository) {
         this.recipeRepository = recipeRepository;
         this.categoryTagRepository = categoryTagRepository;
-        this.ratingRepository = ratingRepository;
-        this.instructionRepository = instructionRepository;
-        this.ingredientRepository = ingredientRepository;
     }
 
     @Autowired
-
 
 
     public Iterable<Recipe> findAll() {
@@ -44,8 +37,6 @@ public class RecipeService {
                 .collect(Collectors.toList());
 
         return publishedRecipes;
-
-//        return null;
     }
 
     public Recipe findById(Long id) {
@@ -97,7 +88,6 @@ public class RecipeService {
 //            CrudRepository<?,Long> deleteRepo = deleteIterator.next();
 //            deleteRepo.deleteAll(deleteMap.get(deleteRepo));
 //        }
-
 
 
 //
