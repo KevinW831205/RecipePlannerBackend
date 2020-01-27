@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Set;
 
@@ -17,14 +20,15 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_generator")
     private Long id;
 
-    @NotNull
+    @Size(min = 6, message = "username size must be greater than 6")
     private String username;
-    @NotNull
+
+    @Size(min = 6, message = "password size must be greater than 6")
     private String password;
     private Boolean isAdmin;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "account")
-    @JsonIgnoreProperties(value={"account"})
+    @JsonIgnoreProperties(value = {"account"})
     private List<Recipe> recipesCreated;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "accountId")

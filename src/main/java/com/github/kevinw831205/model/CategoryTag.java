@@ -3,6 +3,7 @@ package com.github.kevinw831205.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
@@ -16,6 +17,8 @@ public class CategoryTag implements Serializable {
     @Column(name = "categoryTag_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "categoryTag_generator")
     private Long id;
+
+    @NotBlank(message = "must have name")
     private String name;
 
     @ManyToMany(mappedBy = "categoryTags",fetch = FetchType.LAZY)

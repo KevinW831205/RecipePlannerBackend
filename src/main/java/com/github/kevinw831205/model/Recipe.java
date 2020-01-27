@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
@@ -19,6 +20,7 @@ public class Recipe implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "recipe_generator")
     private Long id;
 
+    @NotBlank(message = "must have name")
     private String name;
     private String description;
     private Boolean isPublished;

@@ -1,6 +1,7 @@
 package com.github.kevinw831205.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -17,7 +18,10 @@ public class Ingredient {
     @NotNull
     private Long recipeId;
 
+    @NotBlank(message = "must have name")
     private String name;
+
+    @NotBlank(message = "must specify amount")
     private String amount;
 
     public Ingredient() {

@@ -1,6 +1,10 @@
 package com.github.kevinw831205.model;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Table(name = "instruction")
@@ -16,7 +20,10 @@ public class Instruction {
     @NotNull
     private Long recipeId;
 
+    @NotBlank(message = "instruction is mandatory")
     private String instruction;
+
+    @Min(value = 1, message = "order is mandatory")
     private Integer instructionOrder;
 
     public Instruction() {
