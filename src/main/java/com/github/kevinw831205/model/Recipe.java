@@ -30,7 +30,7 @@ public class Recipe implements Serializable {
 
     @ManyToOne
     @JoinColumn(name="accountId")
-    @JsonIgnoreProperties(value={"password","isAdmin","recipesCreated","ratingsGiven"})
+    @JsonIgnoreProperties(value={"password","admin","recipesCreated","ratingsGiven"})
     private Account account;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "recipeId")
