@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 @Table(name = "instruction")
 @Entity
-public class Instruction {
+public class Instruction implements Comparable<Instruction> {
     @Id
     @NotNull
     @Column(name = "instruction_id")
@@ -70,4 +70,8 @@ public class Instruction {
     }
 
 
+    @Override
+    public int compareTo(Instruction instruction) {
+        return this.instructionOrder - instruction.getInstructionOrder();
+    }
 }

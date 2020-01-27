@@ -26,7 +26,13 @@ public class RecipeService {
 
 
     public Iterable<Recipe> findAll() {
-        return recipeRepository.findAll();
+        Iterable<Recipe> allRecipes = recipeRepository.findAll();
+
+        allRecipes.forEach(r->{
+            Collections.sort(r.getInstructionList());
+        });
+
+        return allRecipes;
     }
 
     public List<Recipe> findAllPublished() {
@@ -34,6 +40,10 @@ public class RecipeService {
         List<Recipe> publishedRecipes = StreamSupport.stream(allRecipes.spliterator(), false)
                 .filter(r -> r.getPublished().equals(true))
                 .collect(Collectors.toList());
+
+        publishedRecipes.forEach(r->{
+            Collections.sort(r.getInstructionList());
+        });
 
         return publishedRecipes;
     }
