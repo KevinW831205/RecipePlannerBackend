@@ -22,4 +22,68 @@ public class RecipeSimple {
         this.averageRating = averageRating;
         this.categoryTags = categoryTags;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public Integer getNumberOfRating() {
+        return numberOfRating;
+    }
+
+    public void setNumberOfRating(Integer numberOfRating) {
+        this.numberOfRating = numberOfRating;
+    }
+
+    public Double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(Double averageRating) {
+        this.averageRating = averageRating;
+    }
+
+    public Set<CategoryTag> getCategoryTags() {
+        return categoryTags;
+    }
+
+    public void setCategoryTags(Set<CategoryTag> categoryTags) {
+        this.categoryTags = categoryTags;
+    }
 }
