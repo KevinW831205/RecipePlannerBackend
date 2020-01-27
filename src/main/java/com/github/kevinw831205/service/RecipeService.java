@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 @Service
@@ -39,23 +40,26 @@ public class RecipeService {
 
     public List<RecipeSimple> findAllPublishedSimple() {
         Iterable<Recipe> allRecipes = recipeRepository.findAll();
-        List<RecipeSimple> simpleRecipe = StreamSupport.stream(allRecipes.spliterator(), false)
-                .filter(r -> r.getPublished().equals(true))
-                .map((r) -> {
-                    RecipeSimple recipeSimple = new RecipeSimpleBuilder()
-                                    .setId(r.getId())
-                                    .setName(r.getName())
-                                    .setDescription(r.getDescription())
-                                    .setAuthorId(r.getAccount().getId())
-                                    .setAuthor(r.getAccount().getUsername())
-                                    .setNumberOfRating(r.getNumberOfRating())
-                                    .setAverageRating(r.getAverageRating())
-                                    .setCategoryTags(r.getCategoryTags())
-                                    .build();
-                    return recipeSimple;
-                })
-                .collect(Collectors.toList());
-        return simpleRecipe;
+        Spliterator<Recipe> splitertaor = allRecipes.spliterator();
+        Stream<Recipe> stream = StreamSupport.stream(splitertaor, false);
+        stream = stream.filter(r -> r.getPublished().equals(true));
+
+        Stream<RecipeSimple> recipeSimpleStream = stream.map((r) -> {
+            RecipeSimple recipeSimple = new RecipeSimpleBuilder()
+                    .setId(r.getId())
+                    .setName(r.getName())
+                    .setDescription(r.getDescription())
+                    .setAuthorId(r.getAccount().getId())
+                    .setAuthor(r.getAccount().getUsername())
+                    .setNumberOfRating(r.getNumberOfRating())
+                    .setAverageRating(r.getAverageRating())
+                    .setCategoryTags(r.getCategoryTags())
+                    .build();
+            return recipeSimple;
+        });
+
+        List<RecipeSimple> list = recipeSimpleStream.collect(Collectors.toList());
+        return list;
     }
 
     /*

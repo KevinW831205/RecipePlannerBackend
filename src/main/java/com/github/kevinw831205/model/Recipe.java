@@ -28,6 +28,7 @@ public class Recipe implements Serializable {
 //    private Long accountId;
 
     @ManyToOne
+    @NotNull
     @JoinColumn(name="accountId")
     @JsonIgnoreProperties(value={"password","admin","recipesCreated","ratingsGiven"})
     private Account account;
