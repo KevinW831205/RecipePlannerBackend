@@ -23,10 +23,13 @@ public class IngredientService {
     }
 
     public Ingredient create(Ingredient ingredient){
+        // Ingredient validation
         return ingredientRepository.save(ingredient);
     }
 
     public Ingredient update(Long id, Ingredient ingredient) {
+        // Ingredient validation
+
         Ingredient ingredientInDatabase = findById(id);
         if(ingredientInDatabase == null){
             return null;

@@ -78,10 +78,12 @@ public class RecipeService {
     }
 
     public Recipe create(Recipe recipe) {
+        // recipe validation
         return recipeRepository.save(recipe);
     }
 
     public Recipe update(Long id, Recipe recipe) {
+        // update validation
         Recipe recipeInDatabase = findById(id);
         if (recipeInDatabase == null) {
             return null;

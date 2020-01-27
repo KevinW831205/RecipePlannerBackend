@@ -24,6 +24,7 @@ public class AccountService {
     }
 
     public Account create(Account account) {
+        // some account validation
         String password = account.getPassword();
         account.setPassword(MD5.getMd5(password));
         return accountRepository.save(account);

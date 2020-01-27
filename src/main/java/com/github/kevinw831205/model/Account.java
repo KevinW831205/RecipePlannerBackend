@@ -16,7 +16,10 @@ public class Account {
     @Column(name = "account_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_generator")
     private Long id;
+
+    @NotNull
     private String username;
+    @NotNull
     private String password;
     private Boolean isAdmin;
 

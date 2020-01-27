@@ -23,10 +23,13 @@ public class InstructionService {
     }
 
     public Instruction create(Instruction instruction){
+        // Instruction Validation
         return instructionRepository.save(instruction);
     }
 
     public Instruction update(Long id, Instruction instruction) {
+        // Instruction Validation
+
         Instruction instructionInDatabase = findById(id);
         if(instructionInDatabase == null){
             return null;
