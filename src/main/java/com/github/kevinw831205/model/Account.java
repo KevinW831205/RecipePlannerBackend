@@ -1,5 +1,6 @@
 package com.github.kevinw831205.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -24,7 +25,9 @@ public class Account {
     private String username;
 
     @Size(min = 6, message = "password size must be greater than 6")
+    @JsonIgnore
     private String password;
+    
     private Boolean isAdmin;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "account")
