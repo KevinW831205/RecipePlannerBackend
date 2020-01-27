@@ -1,6 +1,7 @@
 package com.github.kevinw831205.model;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Set;

@@ -24,9 +24,13 @@ public class Recipe implements Serializable {
     private Boolean isPublished;
     private String summary;
 
-    @Column(name = "account_id")
-    @NotNull
-    private Long accountId;
+//    @Column(name = "account_id")
+//    @NotNull
+//    private Long accountId;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value={"password","isAdmin","recipesCreated,ratingsGiven"})
+    private Account account;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "recipeId")
     private List<Instruction> instructionList;
@@ -67,13 +71,13 @@ public class Recipe implements Serializable {
         this.id = id;
     }
 
-    public Long getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
+//    public Long getAccountId() {
+//        return accountId;
+//    }
+//
+//    public void setAccountId(Long accountId) {
+//        this.accountId = accountId;
+//    }
 
     public List<Instruction> getInstructionList() {
         return instructionList;
@@ -167,7 +171,15 @@ public class Recipe implements Serializable {
         this.summary = summary;
     }
 
-//    @PreRemove
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    //    @PreRemove
 //    public void removeListItems(){
 ////        this.ingredientList.clear();
 ////        this.ratings.clear();

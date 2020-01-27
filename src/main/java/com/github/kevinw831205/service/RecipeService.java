@@ -5,11 +5,8 @@ import com.github.kevinw831205.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -17,10 +14,12 @@ import java.util.stream.StreamSupport;
 public class RecipeService {
     private RecipeRepository recipeRepository;
     private CategoryTagRepository categoryTagRepository;
+    private AccountRepository accountRepository;
 
-    public RecipeService(RecipeRepository recipeRepository, CategoryTagRepository categoryTagRepository) {
+    public RecipeService(RecipeRepository recipeRepository, CategoryTagRepository categoryTagRepository, AccountRepository accountRepository) {
         this.recipeRepository = recipeRepository;
         this.categoryTagRepository = categoryTagRepository;
+        this.accountRepository = accountRepository;
     }
 
     @Autowired
@@ -39,11 +38,19 @@ public class RecipeService {
         return publishedRecipes;
     }
 
+    public Iterable<Recipe> findAllPublishedSimple() {
+        Iterable<Recipe> allRecipes = recipeRepository.findAll();
+
+        return null;
+    }
+
     public Recipe findById(Long id) {
         return recipeRepository.findById(id).get();
     }
 
     public Recipe create(Recipe recipe) {
+        Account account = accountRepository.findById(recipe.getAccountId()).get();
+        recipe.setAccount(account);
         return recipeRepository.save(recipe);
     }
 
@@ -106,4 +113,6 @@ public class RecipeService {
         recipe.getCategoryTags().add(categoryTag);
         return recipeRepository.save(recipe);
     }
+
+
 }

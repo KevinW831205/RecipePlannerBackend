@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Iterator;
+
 @RequestMapping(value = "/api/recipe")
 @Controller
 public class RecipeController {
@@ -29,6 +31,13 @@ public class RecipeController {
     public ResponseEntity<?> findAllPublished(){
         Iterable<Recipe> publishedEntity = recipeService.findAllPublished();
         ResponseEntity<?> response = new ResponseEntity<>(publishedEntity,HttpStatus.OK);
+        return response;
+    }
+
+    @RequestMapping(value="")
+    public ResponseEntity<?> findAllPublishedSimple(){
+        Iterable<Recipe> publishedEntitySimple = recipeService.findAllPublishedSimple();
+        ResponseEntity<?> response = new ResponseEntity<>(publishedEntitySimple, HttpStatus.OK);
         return response;
     }
 
@@ -66,5 +75,7 @@ public class RecipeController {
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }
+
+
 
 }
