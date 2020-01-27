@@ -22,7 +22,6 @@ public class Recipe implements Serializable {
     private String name;
     private String description;
     private Boolean isPublished;
-    private String summary;
 
 //    @Column(name = "account_id")
 //    @NotNull
@@ -162,14 +161,6 @@ public class Recipe implements Serializable {
 
     public void setPublished(Boolean published) {
         isPublished = published;
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
     }
 
     public Account getAccount() {

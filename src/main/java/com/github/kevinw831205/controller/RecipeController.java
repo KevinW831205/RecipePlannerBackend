@@ -1,6 +1,7 @@
 package com.github.kevinw831205.controller;
 
 import com.github.kevinw831205.model.Recipe;
+import com.github.kevinw831205.model.RecipeSimple;
 import com.github.kevinw831205.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Iterator;
+import java.util.List;
 
 @RequestMapping(value = "/api/recipe")
 @Controller
@@ -34,9 +36,9 @@ public class RecipeController {
         return response;
     }
 
-    @RequestMapping(value="")
+    @RequestMapping(value="/simple",method = RequestMethod.GET)
     public ResponseEntity<?> findAllPublishedSimple(){
-        Iterable<Recipe> publishedEntitySimple = recipeService.findAllPublishedSimple();
+        List<RecipeSimple> publishedEntitySimple = recipeService.findAllPublishedSimple();
         ResponseEntity<?> response = new ResponseEntity<>(publishedEntitySimple, HttpStatus.OK);
         return response;
     }

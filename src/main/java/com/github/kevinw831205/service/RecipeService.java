@@ -3,7 +3,6 @@ package com.github.kevinw831205.service;
 import com.github.kevinw831205.model.*;
 import com.github.kevinw831205.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -38,11 +37,37 @@ public class RecipeService {
         return publishedRecipes;
     }
 
-    public Iterable<Recipe> findAllPublishedSimple() {
+    public List<RecipeSimple> findAllPublishedSimple() {
         Iterable<Recipe> allRecipes = recipeRepository.findAll();
-
-        return null;
+        List<RecipeSimple> simpleRecipe = StreamSupport.stream(allRecipes.spliterator(), false)
+                .filter(r -> r.getPublished().equals(true))
+                .map((r) -> {
+                    RecipeSimple recipeSimple = new RecipeSimpleBuilder()
+                                    .setId(r.getId())
+                                    .setName(r.getName())
+                                    .setDescription(r.getDescription())
+                                    .setAuthorId(r.getAccount().getId())
+                                    .setAuthor(r.getAccount().getUsername())
+                                    .setNumberOfRating(r.getNumberOfRating())
+                                    .setAverageRating(r.getAverageRating())
+                                    .setCategoryTags(r.getCategoryTags())
+                                    .build();
+                    return recipeSimple;
+                })
+                .collect(Collectors.toList());
+        return simpleRecipe;
     }
+
+    /*
+            this.id = id;
+        this.name = name;
+        this.description = description;
+        this.authorId = authorId;
+        this.author = author;
+        this.numberOfRating = numberOfRating;
+        this.averageRating = averageRating;
+        this.categoryTags = categoryTags;
+     */
 
     public Recipe findById(Long id) {
         return recipeRepository.findById(id).get();
