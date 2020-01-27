@@ -22,6 +22,7 @@ public class Recipe implements Serializable {
     private String name;
     private String description;
     private Boolean isPublished;
+    private String summary;
 
     @Column(name = "account_id")
     @NotNull
@@ -158,16 +159,24 @@ public class Recipe implements Serializable {
         isPublished = published;
     }
 
-    @PreRemove
-    public void removeListItems(){
-//        this.ingredientList.clear();
-//        this.ratings.clear();
-//        this.instructionList.clear();
-//        this.categoryTags.clear();
-
-//        setIngredientList(null);
-//        setRatings(null);
-//        setInstructionList(null);
-//        setCategoryTags(null);
+    public String getSummary() {
+        return summary;
     }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+//    @PreRemove
+//    public void removeListItems(){
+////        this.ingredientList.clear();
+////        this.ratings.clear();
+////        this.instructionList.clear();
+////        this.categoryTags.clear();
+//
+////        setIngredientList(null);
+////        setRatings(null);
+////        setInstructionList(null);
+////        setCategoryTags(null);
+//    }
 }
