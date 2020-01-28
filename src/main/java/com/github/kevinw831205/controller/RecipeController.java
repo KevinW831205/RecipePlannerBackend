@@ -9,10 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Iterator;
 import java.util.List;
 
 @RequestMapping(value = "/api/recipe")
+@CrossOrigin(origins = "*")
 @Controller
 public class RecipeController {
     private RecipeService recipeService;

@@ -20,6 +20,7 @@ public class LoginService {
     public Boolean validateLogin(Login login){
         login.getUsername();
         login.getPassword();
+        return null;
     }
 
     public Account findById(Long id) {
