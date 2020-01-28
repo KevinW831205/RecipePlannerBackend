@@ -6,6 +6,8 @@ import com.github.kevinw831205.security.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
+
 @Service
 public class AccountService {
     private AccountRepository accountRepository;
@@ -21,6 +23,16 @@ public class AccountService {
 
     public Account findById(Long id) {
         return accountRepository.findById(id).get();
+    }
+
+    public Account findByUsername(String username){
+        Iterable<Account> accounts = findAll();
+        for(Account account : accounts){
+            if(account.getUsername().equals(username)){
+                return account;
+            }
+        }
+        return null;
     }
 
     public Account create(Account account) {
