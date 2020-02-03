@@ -18,6 +18,10 @@ public class InstructionService {
         return instructionRepository.findAll();
     }
 
+    public Iterable<Instruction> findAllByRecipeId(Long id){
+        return instructionRepository.findAllByRecipeId(id);
+    }
+
     public Instruction findById(Long id){
         return instructionRepository.findById(id).get();
     }

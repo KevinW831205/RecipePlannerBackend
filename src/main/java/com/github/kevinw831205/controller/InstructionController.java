@@ -30,7 +30,7 @@ public class InstructionController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> findById(@PathVariable Long id){
-        Instruction entity = instructionService.findById(id);
+        Iterable<Instruction> entity = instructionService.findAllByRecipeId(id);
         ResponseEntity<?> response = new ResponseEntity<>(entity ,HttpStatus.OK);
         return response;
     }
