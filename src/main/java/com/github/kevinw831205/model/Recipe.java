@@ -24,6 +24,7 @@ public class Recipe implements Serializable {
     private String name;
     private String description;
     private Boolean isPublished;
+    private String imageUrl;
 
 //    @Column(name = "account_id")
 //    @NotNull
@@ -172,6 +173,14 @@ public class Recipe implements Serializable {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     //    @PreRemove

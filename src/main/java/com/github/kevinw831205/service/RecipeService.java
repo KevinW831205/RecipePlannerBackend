@@ -89,6 +89,7 @@ public class RecipeService {
 
     public Recipe create(Recipe recipe) {
         // recipe validation
+        recipe.setImageUrl("https://via.placeholder.com/400x300");
         return recipeRepository.save(recipe);
     }
 
