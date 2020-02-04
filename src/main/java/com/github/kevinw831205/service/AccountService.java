@@ -49,6 +49,8 @@ public class AccountService {
     }
 
     public Account createAdmin(Account account){
+        String password = account.getPassword();
+        account.setPassword(MD5.getMd5(password));
         return accountRepository.save(account);
     }
 

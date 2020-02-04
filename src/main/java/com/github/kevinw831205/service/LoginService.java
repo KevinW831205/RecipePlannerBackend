@@ -19,15 +19,17 @@ public class LoginService {
     }
 
     private Boolean validateLogin(Login login, Account account) {
-        String username = login.getUsername();
-        account = this.accountRepository.findByUserName(username).get(0);
         String encryptedLoginPassword = MD5.getMd5(login.getPassword());
+        System.out.println("account password "+account.getPassword());
+        System.out.println("login password "+encryptedLoginPassword);
+
         return encryptedLoginPassword.equals(account.getPassword());
     }
 
 
     public Account login(Login loginInfo) {
         Account account = this.accountRepository.findByUserName(loginInfo.getUsername()).get(0);
+        System.out.println(account.getUsername());
         if(validateLogin(loginInfo, account)){
             return account;
         } else {
