@@ -1,6 +1,7 @@
 package com.github.kevinw831205.controller;
 
 import com.github.kevinw831205.model.Account;
+import com.github.kevinw831205.model.AccountJSON;
 import com.github.kevinw831205.model.SignupInfo;
 import com.github.kevinw831205.service.AccountService;
 import org.apache.coyote.Response;
@@ -24,6 +25,8 @@ public class AccountController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<?> findAll(){
         Iterable<Account> allEntity = accountService.findAll();
+
+
         ResponseEntity<?> response = new ResponseEntity<>(allEntity, HttpStatus.OK);
         return response;
     }
@@ -44,7 +47,8 @@ public class AccountController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody SignupInfo signupInfo){
-        Account responseBody = accountService.create(signupInfo);
+        Account account = accountService.create(signupInfo);
+        AccountJSON responseBody = new AccountJSON(account);
         ResponseEntity<?> responseEntity = new ResponseEntity<>(responseBody ,HttpStatus.CREATED);
         return responseEntity;
     }

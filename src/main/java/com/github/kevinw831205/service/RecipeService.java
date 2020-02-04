@@ -16,14 +16,13 @@ public class RecipeService {
     private CategoryTagRepository categoryTagRepository;
     private AccountRepository accountRepository;
 
+
+    @Autowired
     public RecipeService(RecipeRepository recipeRepository, CategoryTagRepository categoryTagRepository, AccountRepository accountRepository) {
         this.recipeRepository = recipeRepository;
         this.categoryTagRepository = categoryTagRepository;
         this.accountRepository = accountRepository;
     }
-
-    @Autowired
-
 
     public Iterable<Recipe> findAll() {
         Iterable<Recipe> allRecipes = recipeRepository.findAll();

@@ -25,7 +25,6 @@ public class Account {
     private String username;
 
     @Size(message = "password size must be greater than 6")
-    @JsonIgnore
     private String password;
 
     private Boolean isAdmin;
