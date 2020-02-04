@@ -27,13 +27,15 @@ public class AccountService {
     }
 
     public Account findByUsername(String username) {
-        Iterable<Account> accounts = findAll();
-        for (Account account : accounts) {
-            if (account.getUsername().equals(username)) {
-                return account;
-            }
-        }
-        return null;
+//        Iterable<Account> accounts = findAll();
+//        for (Account account : accounts) {
+//            if (account.getUsername().equals(username)) {
+//                return account;
+//            }
+//        }
+//        return null;
+
+        return accountRepository.findByUserName(username).get(0);
     }
 
     public Account create(SignupInfo signupInfo) {

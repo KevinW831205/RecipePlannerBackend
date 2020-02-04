@@ -17,16 +17,14 @@ public class LoginService {
         this.accountRepository = accountRepository;
     }
 
-    public Boolean validateLogin(Login login){
-        login.getUsername();
+    private Boolean validateLogin(Login login){
+        String username = login.getUsername();
+
         login.getPassword();
 
         return null;
     }
 
-    public Account findById(Long id) {
-        return accountRepository.findById(id).get();
-    }
 
 
 }
