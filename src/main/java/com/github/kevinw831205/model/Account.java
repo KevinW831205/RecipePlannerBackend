@@ -27,8 +27,9 @@ public class Account {
     @Size(min = 6, message = "password size must be greater than 6")
     @JsonIgnore
     private String password;
-    
+
     private Boolean isAdmin;
+    private String profileImageUrl;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "account")
     @JsonIgnoreProperties(value = {"account"})
@@ -88,4 +89,11 @@ public class Account {
         isAdmin = admin;
     }
 
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
 }
