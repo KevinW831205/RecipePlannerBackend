@@ -1,6 +1,7 @@
 package com.github.kevinw831205.controller;
 
 import com.github.kevinw831205.model.Account;
+import com.github.kevinw831205.model.SignupInfo;
 import com.github.kevinw831205.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,14 +37,21 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<?> create(@RequestBody Account account){
-        Account responseBody = accountService.create(account);
+    public ResponseEntity<?> create(@RequestBody SignupInfo signupInfo){
+        Account responseBody = accountService.create(signupInfo);
+        ResponseEntity<?> responseEntity = new ResponseEntity<>(responseBody ,HttpStatus.CREATED);
+        return responseEntity;
+    }
+
+    @RequestMapping(value = "/admin", method = RequestMethod.POST)
+    public ResponseEntity<?> createAdmin(@RequestBody Account account){
+        Account responseBody = accountService.createAdmin(account);
         ResponseEntity<?> responseEntity = new ResponseEntity<>(responseBody ,HttpStatus.CREATED);
         return responseEntity;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> create(@PathVariable Long id, @RequestBody Account account){
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Account account){
         Account responseBody = accountService.update(id, account);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;

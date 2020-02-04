@@ -58,7 +58,7 @@ public class RecipeController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> create(@PathVariable Long id, @RequestBody Recipe recipe){
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Recipe recipe){
         Recipe responseBody = recipeService.update(id, recipe);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;

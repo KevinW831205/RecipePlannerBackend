@@ -43,7 +43,7 @@ public class InstructionController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> create(@PathVariable Long id, @RequestBody Instruction instruction){
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Instruction instruction){
         Instruction responseBody = instructionService.update(id, instruction);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;

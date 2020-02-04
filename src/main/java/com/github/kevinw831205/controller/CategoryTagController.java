@@ -43,7 +43,7 @@ public class CategoryTagController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> create(@PathVariable Long id, @RequestBody CategoryTag categoryTag){
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody CategoryTag categoryTag){
         CategoryTag responseBody = categoryTagService.update(id, categoryTag);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;

@@ -43,7 +43,7 @@ public class TemplateController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> create(@PathVariable Long id, @RequestBody Template template){
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Template template){
         Template responseBody = templateService.update(id, template);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;

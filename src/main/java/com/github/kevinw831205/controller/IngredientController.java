@@ -43,7 +43,7 @@ public class IngredientController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> create(@PathVariable Long id, @RequestBody Ingredient ingredient){
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Ingredient ingredient){
         Ingredient responseBody = ingredientService.update(id, ingredient);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;

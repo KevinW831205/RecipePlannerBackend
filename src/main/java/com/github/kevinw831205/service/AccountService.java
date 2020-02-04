@@ -1,6 +1,7 @@
 package com.github.kevinw831205.service;
 
 import com.github.kevinw831205.model.Account;
+import com.github.kevinw831205.model.SignupInfo;
 import com.github.kevinw831205.repository.AccountRepository;
 import com.github.kevinw831205.security.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,20 +26,27 @@ public class AccountService {
         return accountRepository.findById(id).get();
     }
 
-    public Account findByUsername(String username){
+    public Account findByUsername(String username) {
         Iterable<Account> accounts = findAll();
-        for(Account account : accounts){
-            if(account.getUsername().equals(username)){
+        for (Account account : accounts) {
+            if (account.getUsername().equals(username)) {
                 return account;
             }
         }
         return null;
     }
 
-    public Account create(Account account) {
+    public Account create(SignupInfo signupInfo) {
         // some account validation
-        String password = account.getPassword();
+        Account account = new Account();
+        account.setUsername(signupInfo.getUsername());
+        String password = signupInfo.getPassword();
         account.setPassword(MD5.getMd5(password));
+        account.setAdmin(false);
+        return accountRepository.save(account);
+    }
+
+    public Account createAdmin(Account account){
         return accountRepository.save(account);
     }
 

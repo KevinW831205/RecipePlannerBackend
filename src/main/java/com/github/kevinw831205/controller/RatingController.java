@@ -43,7 +43,7 @@ public class RatingController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> create(@PathVariable Long id, @RequestBody Rating rating){
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Rating rating){
         Rating responseBody = ratingService.update(id, rating);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
