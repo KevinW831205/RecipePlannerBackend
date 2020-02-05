@@ -79,4 +79,12 @@ public class AccountJSON {
     public void setRatingsGiven(List<Rating> ratingsGiven) {
         this.ratingsGiven = ratingsGiven;
     }
+
+    public String getAboutMe() {
+        return aboutMe;
+    }
+
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
+    }
 }
