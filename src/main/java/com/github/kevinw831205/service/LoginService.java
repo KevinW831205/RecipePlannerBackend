@@ -2,6 +2,7 @@ package com.github.kevinw831205.service;
 
 
 import com.github.kevinw831205.model.Account;
+import com.github.kevinw831205.model.AccountJSON;
 import com.github.kevinw831205.model.Login;
 import com.github.kevinw831205.repository.AccountRepository;
 import com.github.kevinw831205.security.MD5;
@@ -27,11 +28,12 @@ public class LoginService {
     }
 
 
-    public Account login(Login loginInfo) {
+    public AccountJSON login(Login loginInfo) {
         Account account = this.accountRepository.findByUserName(loginInfo.getUsername()).get(0);
-        System.out.println(account.getUsername());
+        AccountJSON accountJSON = new AccountJSON(account);
+
         if(validateLogin(loginInfo, account)){
-            return account;
+            return accountJSON;
         } else {
             return null;
         }

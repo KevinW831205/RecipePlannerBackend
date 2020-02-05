@@ -1,6 +1,7 @@
 package com.github.kevinw831205.controller;
 
 import com.github.kevinw831205.model.Account;
+import com.github.kevinw831205.model.AccountJSON;
 import com.github.kevinw831205.model.Login;
 import com.github.kevinw831205.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class LoginController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<?> validateLogin(@RequestBody Login loginInfo){
-        Account responseBody = loginService.login(loginInfo);
+        AccountJSON responseBody = loginService.login(loginInfo);
         if(responseBody == null){
             return new ResponseEntity<>(null,HttpStatus.FORBIDDEN);
         }
