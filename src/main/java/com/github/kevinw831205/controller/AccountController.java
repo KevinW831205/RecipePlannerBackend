@@ -24,7 +24,7 @@ public class AccountController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<?> findAll(){
-        Iterable<Account> allEntity = accountService.findAll();
+        Iterable<AccountJSON> allEntity = accountService.findAll();
 
 
         ResponseEntity<?> response = new ResponseEntity<>(allEntity, HttpStatus.OK);
@@ -33,43 +33,42 @@ public class AccountController {
 
     @RequestMapping(value="/user", method = RequestMethod.GET) // example: http://localhost:8080/api/account/user?username=123
     public ResponseEntity<?> findByUsername(@RequestParam String username){
-        Account entity = accountService.findByUsername(username);
+        AccountJSON entity = accountService.findByUsername(username);
         ResponseEntity<?> response = new ResponseEntity<>(entity, HttpStatus.OK);
         return response;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> findById(@PathVariable Long id){
-        Account entity = accountService.findById(id);
+        AccountJSON entity = accountService.findById(id);
         ResponseEntity<?> response = new ResponseEntity<>(entity ,HttpStatus.OK);
         return response;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody SignupInfo signupInfo){
-        Account account = accountService.create(signupInfo);
-        AccountJSON responseBody = new AccountJSON(account);
+        AccountJSON responseBody = accountService.create(signupInfo);
         ResponseEntity<?> responseEntity = new ResponseEntity<>(responseBody ,HttpStatus.CREATED);
         return responseEntity;
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.POST)
     public ResponseEntity<?> createAdmin(@RequestBody Account account){
-        Account responseBody = accountService.createAdmin(account);
+        AccountJSON responseBody = accountService.createAdmin(account);
         ResponseEntity<?> responseEntity = new ResponseEntity<>(responseBody ,HttpStatus.CREATED);
         return responseEntity;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Account account){
-        Account responseBody = accountService.update(id, account);
+        AccountJSON responseBody = accountService.update(id, account);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable Long id){
-        Account responseBody = accountService.delete(id);
+        AccountJSON responseBody = accountService.delete(id);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }

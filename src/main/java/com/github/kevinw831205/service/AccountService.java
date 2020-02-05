@@ -68,7 +68,7 @@ public class AccountService {
         if (accountInDatabase == null) {
             return null;
         }
-        return new AccountJSON(accountRepository.save(account);
+        return new AccountJSON(accountRepository.save(account));
     }
 
     public AccountJSON delete(Long id) {
