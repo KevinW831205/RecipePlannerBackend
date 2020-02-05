@@ -21,7 +21,8 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_generator")
     private Long id;
 
-    @Size(min = 6, max=20, message = "username size must be greater than 6")
+    @Size(min = 6, max = 20, message = "username size must be greater than 6")
+    @Column(unique = true)
     private String username;
 
     @Size(message = "password size must be greater than 6")
