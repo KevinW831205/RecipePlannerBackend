@@ -1,13 +1,18 @@
 package com.github.kevinw831205.service;
 
 import com.github.kevinw831205.model.Account;
+import com.github.kevinw831205.model.AccountJSON;
 import com.github.kevinw831205.model.SignupInfo;
 import com.github.kevinw831205.repository.AccountRepository;
 import com.github.kevinw831205.security.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class AccountService {
@@ -18,15 +23,19 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
-    public Iterable<Account> findAll() {
-        return accountRepository.findAll();
+    public Iterable<AccountJSON> findAll() {
+        Iterable<Account> accounts = accountRepository.findAll();
+        Iterable<AccountJSON> result = StreamSupport.stream(accounts.spliterator(), false)
+                .map(a -> new AccountJSON(a))
+                .collect(Collectors.toList());
+        return result;
     }
 
-    public Account findById(Long id) {
-        return accountRepository.findById(id).get();
+    public AccountJSON findById(Long id) {
+        return new AccountJSON(accountRepository.findById(id).get());
     }
 
-    public Account findByUsername(String username) {
+    public AccountJSON findByUsername(String username) {
 //        Iterable<Account> accounts = findAll();
 //        for (Account account : accounts) {
 //            if (account.getUsername().equals(username)) {
@@ -35,37 +44,36 @@ public class AccountService {
 //        }
 //        return null;
 
-        return accountRepository.findByUserName(username).get(0);
+        return new AccountJSON(accountRepository.findByUserName(username).get(0));
     }
 
-    public Account create(SignupInfo signupInfo) {
+    public AccountJSON create(SignupInfo signupInfo) {
         // some account validation
         Account account = new Account();
         account.setUsername(signupInfo.getUsername());
         String password = signupInfo.getPassword();
         account.setPassword(MD5.getMd5(password));
         account.setAdmin(false);
-        return accountRepository.save(account);
+        return new AccountJSON(accountRepository.save(account));
     }
 
-    public Account createAdmin(Account account){
+    public AccountJSON createAdmin(Account account) {
         String password = account.getPassword();
         account.setPassword(MD5.getMd5(password));
-        return accountRepository.save(account);
+        return new AccountJSON(accountRepository.save(account));
     }
 
-    public Account update(Long id, Account account) {
-        Account accountInDatabase = findById(id);
+    public AccountJSON update(Long id, Account account) {
+        Account accountInDatabase = accountRepository.findById(id).get();
         if (accountInDatabase == null) {
             return null;
         }
-        accountRepository.save(account);
-        return account;
+        return new AccountJSON(accountRepository.save(account);
     }
 
-    public Account delete(Long id) {
-        Account account = findById(id);
+    public AccountJSON delete(Long id) {
+        Account account = accountRepository.findById(id).get();
         accountRepository.delete(account);
-        return account;
+        return new AccountJSON(account);
     }
 }
