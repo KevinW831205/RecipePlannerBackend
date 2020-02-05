@@ -9,6 +9,8 @@ import com.github.kevinw831205.security.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LoginService {
 
@@ -21,21 +23,25 @@ public class LoginService {
 
     private Boolean validateLogin(Login login, Account account) {
         String encryptedLoginPassword = MD5.getMd5(login.getPassword());
-        System.out.println("account password "+account.getPassword());
-        System.out.println("login password "+encryptedLoginPassword);
-
         return encryptedLoginPassword.equals(account.getPassword());
     }
 
 
     public AccountJSON login(Login loginInfo) {
-        Account account = this.accountRepository.findByUserName(loginInfo.getUsername()).get(0);
-        AccountJSON accountJSON = new AccountJSON(account);
 
-        if(validateLogin(loginInfo, account)){
-            return accountJSON;
-        } else {
-            return null;
+        List<Account> accountList = this.accountRepository.findByUserName(loginInfo.getUsername());
+
+        if (accountList.size()>0){
+            Account account = accountList.get(0);
+            AccountJSON accountJSON = new AccountJSON(account);
+            if(validateLogin(loginInfo, account)){
+                return accountJSON;
+            } else {
+                return null;
+            }
         }
+        return null;
+
+
     }
 }

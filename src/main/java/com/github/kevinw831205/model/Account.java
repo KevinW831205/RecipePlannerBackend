@@ -30,6 +30,7 @@ public class Account {
 
     private Boolean isAdmin;
     private String profileImageUrl;
+    private String aboutMe;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "account")
     @JsonIgnoreProperties(value = {"account"})
@@ -95,5 +96,13 @@ public class Account {
 
     public void setProfileImageUrl(String profileImageUrl) {
         this.profileImageUrl = profileImageUrl;
+    }
+
+    public String getAboutMe() {
+        return aboutMe;
+    }
+
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
     }
 }

@@ -17,6 +17,7 @@ public class AccountJSON {
     private String profileImageUrl;
     private List<Recipe> recipesCreated;
     private List<Rating> ratingsGiven;
+    private String aboutMe;
 
     public AccountJSON() {
     }
@@ -28,6 +29,7 @@ public class AccountJSON {
         this.profileImageUrl = account.getProfileImageUrl();
         this.recipesCreated = account.getRecipesCreated();
         this.ratingsGiven = account.getRatingsGiven();
+        this.aboutMe = account.getAboutMe();
     }
 
     public Long getId() {
