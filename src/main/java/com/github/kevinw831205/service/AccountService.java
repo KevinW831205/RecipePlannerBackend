@@ -53,6 +53,7 @@ public class AccountService {
         account.setUsername(signupInfo.getUsername());
         String password = signupInfo.getPassword();
         account.setPassword(MD5.getMd5(password));
+        account.setProfileImageUrl("https://via.placeholder.com/150");
         account.setAdmin(false);
         return new AccountJSON(accountRepository.save(account));
     }
@@ -60,6 +61,8 @@ public class AccountService {
     public AccountJSON createAdmin(Account account) {
         String password = account.getPassword();
         account.setPassword(MD5.getMd5(password));
+        account.setProfileImageUrl("https://via.placeholder.com/150");
+        account.setAdmin(true);
         return new AccountJSON(accountRepository.save(account));
     }
 
