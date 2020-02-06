@@ -66,6 +66,13 @@ public class AccountController {
         return responseEntity;
     }
 
+    @RequestMapping(value = "/aboutme/{id}", method = RequestMethod.PATCH)
+    public ResponseEntity<?> patchAboutMe(@PathVariable Long id, @RequestBody Account account){
+        AccountJSON responseBody = accountService.patchAboutMe(id, account);
+        ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
+        return responseEntity;
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable Long id){
         AccountJSON responseBody = accountService.delete(id);

@@ -30,6 +30,8 @@ public class Account {
 
     private Boolean isAdmin;
     private String profileImageUrl;
+
+    @Size(max=500)
     private String aboutMe;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "account")
@@ -104,5 +106,19 @@ public class Account {
 
     public void setAboutMe(String aboutMe) {
         this.aboutMe = aboutMe;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", isAdmin=" + isAdmin +
+                ", profileImageUrl='" + profileImageUrl + '\'' +
+                ", aboutMe='" + aboutMe + '\'' +
+                ", recipesCreated=" + recipesCreated +
+                ", ratingsGiven=" + ratingsGiven +
+                '}';
     }
 }
