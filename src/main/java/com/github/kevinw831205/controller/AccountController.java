@@ -73,6 +73,13 @@ public class AccountController {
         return responseEntity;
     }
 
+    @RequestMapping(value = "/profileImageUrl/{id}", method = RequestMethod.PATCH)
+    public ResponseEntity<?> patchImageUrl(@PathVariable Long id, @RequestBody Account account){
+        AccountJSON responseBody = accountService.patchImageUrl(id, account);
+        ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
+        return responseEntity;
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable Long id){
         AccountJSON responseBody = accountService.delete(id);

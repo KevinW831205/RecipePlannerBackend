@@ -74,13 +74,21 @@ public class AccountService {
         return new AccountJSON(accountRepository.save(account));
     }
 
-    public AccountJSON patchAboutMe(Long id, Account account){
+    public AccountJSON patchAboutMe(Long id, Account account) {
         Account accountInDatabase = accountRepository.findById(id).get();
-        if(accountInDatabase == null){
+        if (accountInDatabase == null) {
             return null;
         }
         accountInDatabase.setAboutMe(account.getAboutMe());
-        System.out.println(accountInDatabase);
+        return new AccountJSON(accountRepository.save(accountInDatabase));
+    }
+
+    public AccountJSON patchImageUrl(Long id, Account account) {
+        Account accountInDatabase = accountRepository.findById(id).get();
+        if (accountInDatabase == null) {
+            return null;
+        }
+        accountInDatabase.setProfileImageUrl(account.getProfileImageUrl());
         return new AccountJSON(accountRepository.save(accountInDatabase));
     }
 
@@ -89,4 +97,6 @@ public class AccountService {
         accountRepository.delete(account);
         return new AccountJSON(account);
     }
+
+
 }
