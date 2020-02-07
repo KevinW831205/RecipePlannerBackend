@@ -27,7 +27,7 @@ public class RecipeService {
     public Iterable<Recipe> findAll() {
         Iterable<Recipe> allRecipes = recipeRepository.findAll();
 
-        allRecipes.forEach(r->{
+        allRecipes.forEach(r -> {
             Collections.sort(r.getInstructionList());
         });
 
@@ -36,13 +36,19 @@ public class RecipeService {
 
     public List<Recipe> findAllPublished() {
         Iterable<Recipe> allRecipes = recipeRepository.findAll();
-        List<Recipe> publishedRecipes = StreamSupport.stream(allRecipes.spliterator(), false)
-                .filter(r -> r.getPublished().equals(true))
-                .collect(Collectors.toList());
-        publishedRecipes.forEach(r->{
-            Collections.sort(r.getInstructionList());
-        });
-        return publishedRecipes;
+        try {
+            List<Recipe> publishedRecipes = StreamSupport.stream(allRecipes.spliterator(), false)
+                    .filter(r -> r.getPublished().equals(true))
+                    .collect(Collectors.toList());
+            publishedRecipes.forEach(r -> {
+                Collections.sort(r.getInstructionList());
+            });
+            return publishedRecipes;
+
+        } catch (NullPointerException e){
+
+            return new ArrayList<>();
+        }
     }
 
     public List<RecipeSimple> findAllPublishedSimple() {

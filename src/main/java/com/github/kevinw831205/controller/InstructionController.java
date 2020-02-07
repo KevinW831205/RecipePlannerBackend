@@ -6,12 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping(value = "/api/instruction")
+@CrossOrigin(origins = "*")
 @Controller
 public class InstructionController {
     private InstructionService instructionService;
@@ -22,35 +20,35 @@ public class InstructionController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<?> findAll(){
+    public ResponseEntity<?> findAll() {
         Iterable<Instruction> allEntity = instructionService.findAll();
         ResponseEntity<?> response = new ResponseEntity<>(allEntity, HttpStatus.OK);
         return response;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> findById(@PathVariable Long id){
+    public ResponseEntity<?> findById(@PathVariable Long id) {
         Iterable<Instruction> entity = instructionService.findAllByRecipeId(id);
-        ResponseEntity<?> response = new ResponseEntity<>(entity ,HttpStatus.OK);
+        ResponseEntity<?> response = new ResponseEntity<>(entity, HttpStatus.OK);
         return response;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<?> create(@RequestBody Instruction instruction){
+    public ResponseEntity<?> create(@RequestBody Instruction instruction) {
         Instruction responseBody = instructionService.create(instruction);
-        ResponseEntity<?> responseEntity = new ResponseEntity<>(responseBody ,HttpStatus.CREATED);
+        ResponseEntity<?> responseEntity = new ResponseEntity<>(responseBody, HttpStatus.CREATED);
         return responseEntity;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Instruction instruction){
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Instruction instruction) {
         Instruction responseBody = instructionService.update(id, instruction);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> delete(@PathVariable Long id){
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         Instruction responseBody = instructionService.delete(id);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
