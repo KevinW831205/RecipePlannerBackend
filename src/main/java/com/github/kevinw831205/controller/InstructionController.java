@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping(value = "/api/instruction")
-@CrossOrigin(origins = "http://localhost:4200")
 @Controller
 public class InstructionController {
     private InstructionService instructionService;
