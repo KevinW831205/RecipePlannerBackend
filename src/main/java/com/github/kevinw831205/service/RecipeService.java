@@ -45,7 +45,7 @@ public class RecipeService {
             });
             return publishedRecipes;
 
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
 
             return new ArrayList<>();
         }
@@ -158,4 +158,9 @@ public class RecipeService {
     }
 
 
+    public Recipe togglePublished(Long id) {
+        Recipe recipe = recipeRepository.findById(id).get();
+        recipe.setPublished(!recipe.getPublished());
+        return recipeRepository.save(recipe);
+    }
 }
