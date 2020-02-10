@@ -160,7 +160,6 @@ public class RecipeService {
 
 
     public Recipe togglePublished(Long id) {
-        System.out.println(id);
         Recipe recipe = recipeRepository.findById(id).get();
         recipe.setPublished(!recipe.getPublished());
         return recipeRepository.save(recipe);
