@@ -4,7 +4,6 @@ import com.github.kevinw831205.model.Account;
 import com.github.kevinw831205.model.AccountJSON;
 import com.github.kevinw831205.model.SignupInfo;
 import com.github.kevinw831205.service.AccountService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping(value = "/api/account")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 @Controller
 public class AccountController {
     private AccountService accountService;

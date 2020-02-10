@@ -1,6 +1,5 @@
 package com.github.kevinw831205.controller;
 
-import com.github.kevinw831205.model.Account;
 import com.github.kevinw831205.model.AccountJSON;
 import com.github.kevinw831205.model.Login;
 import com.github.kevinw831205.service.LoginService;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @RequestMapping(value = "/api/login")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 @Controller
 public class LoginController {
     private LoginService loginService;
