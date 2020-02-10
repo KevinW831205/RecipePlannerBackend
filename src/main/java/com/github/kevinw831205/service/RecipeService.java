@@ -164,4 +164,10 @@ public class RecipeService {
         recipe.setPublished(!recipe.getPublished());
         return recipeRepository.save(recipe);
     }
+
+    public Recipe patchName(Long id, String name) {
+        Recipe recipe = recipeRepository.findById(id).get();
+        recipe.setName(name);
+        return recipeRepository.save(recipe);
+    }
 }

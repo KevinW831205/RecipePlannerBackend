@@ -87,4 +87,10 @@ public class RecipeController {
     }
 
 
+    @RequestMapping(value = "/published/{id}", method = RequestMethod.PATCH)
+    public ResponseEntity<?> patchName(@PathVariable Long id, @RequestParam String name) {
+        Recipe entity = recipeService.patchName(id,name);
+        ResponseEntity<?> response = new ResponseEntity<>(entity, HttpStatus.OK);
+        return response;
+    }
 }
