@@ -86,11 +86,18 @@ public class RecipeController {
         return responseEntity;
     }
 
-
     @RequestMapping(value = "/name/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<?> patchName(@PathVariable Long id, @RequestParam String name) {
-        Recipe entity = recipeService.patchName(id,name);
+        Recipe entity = recipeService.patchName(id, name);
         ResponseEntity<?> response = new ResponseEntity<>(entity, HttpStatus.OK);
         return response;
     }
+
+    @RequestMapping(value = "/imageurl/{id}", method = RequestMethod.PATCH)
+    public ResponseEntity<?> patchImage(@PathVariable Long id, @RequestParam String url) {
+        Recipe entity = recipeService.patchImage(id, url);
+        ResponseEntity<?> response = new ResponseEntity<>(entity, HttpStatus.OK);
+        return response;
+    }
+
 }

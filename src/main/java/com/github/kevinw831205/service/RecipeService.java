@@ -170,4 +170,10 @@ public class RecipeService {
         recipe.setName(name);
         return recipeRepository.save(recipe);
     }
+
+    public Recipe patchImage(Long id, String url) {
+        Recipe recipe = recipeRepository.findById(id).get();
+        recipe.setImageUrl(url);
+        return recipeRepository.save(recipe);
+    }
 }
