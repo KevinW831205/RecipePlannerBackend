@@ -100,4 +100,11 @@ public class RecipeController {
         return response;
     }
 
+    @RequestMapping(value = "/description/{id}", method = RequestMethod.PATCH)
+    public ResponseEntity<?> patchDescription(@PathVariable Long id, @RequestBody String description) {
+        Recipe entity = recipeService.patchDescription(id, description);
+        ResponseEntity<?> response = new ResponseEntity<>(entity, HttpStatus.OK);
+        return response;
+    }
+
 }
