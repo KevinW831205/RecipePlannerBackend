@@ -1,9 +1,12 @@
 package com.github.kevinw831205.service;
 
 import com.github.kevinw831205.model.Rating;
+import com.github.kevinw831205.model.Recipe;
 import com.github.kevinw831205.repository.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.stream.StreamSupport;
 
 @Service
 public class RatingService {
@@ -42,8 +45,15 @@ public class RatingService {
     }
 
     public Rating findRated(Long recipe_id, Long account_id) {
+        Iterable<Rating> ratings = ratingRepository.findAll();
+        Rating result = StreamSupport.stream(ratings.spliterator(), false).filter(r -> {
+            if (r.getAccountId().equals(account_id) && r.getRecipeId().equals(recipe_id)) {
+                return true;
+            }
+            return false;
+        }).findFirst().get();
 
-        return null;
+        return result;
     }
 
 //    public Integer countByRecipeId(Long id) {
