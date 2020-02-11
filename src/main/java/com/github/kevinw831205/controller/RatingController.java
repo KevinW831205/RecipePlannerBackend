@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping(value = "/api/rating")
 @Controller
@@ -22,38 +19,46 @@ public class RatingController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<?> findAll(){
+    public ResponseEntity<?> findAll() {
         Iterable<Rating> allEntity = ratingService.findAll();
         ResponseEntity<?> response = new ResponseEntity<>(allEntity, HttpStatus.OK);
         return response;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> findById(@PathVariable Long id){
+    public ResponseEntity<?> findById(@PathVariable Long id) {
         Rating entity = ratingService.findById(id);
-        ResponseEntity<?> response = new ResponseEntity<>(entity ,HttpStatus.OK);
+        ResponseEntity<?> response = new ResponseEntity<>(entity, HttpStatus.OK);
         return response;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<?> create(@RequestBody Rating rating){
+    public ResponseEntity<?> create(@RequestBody Rating rating) {
         Rating responseBody = ratingService.create(rating);
-        ResponseEntity<?> responseEntity = new ResponseEntity<>(responseBody ,HttpStatus.CREATED);
+        ResponseEntity<?> responseEntity = new ResponseEntity<>(responseBody, HttpStatus.CREATED);
         return responseEntity;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Rating rating){
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Rating rating) {
         Rating responseBody = ratingService.update(id, rating);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> delete(@PathVariable Long id){
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         Rating responseBody = ratingService.delete(id);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }
+
+    @RequestMapping(value = "/rated", method = RequestMethod.GET)
+    public ResponseEntity<?> checkRated(@RequestParam Long recipe_id, @RequestParam Long account_id ) {
+        Rating entity = ratingService.findRated(recipe_id,account_id);
+        ResponseEntity<?> response = new ResponseEntity<>(entity, HttpStatus.OK);
+        return response;
+    }
+
 
 }

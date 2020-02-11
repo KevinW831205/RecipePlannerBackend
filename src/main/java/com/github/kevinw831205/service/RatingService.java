@@ -41,6 +41,11 @@ public class RatingService {
         return rating;
     }
 
+    public Rating findRated(Long recipe_id, Long account_id) {
+
+        return null;
+    }
+
 //    public Integer countByRecipeId(Long id) {
 //        return ratingRepository.countByRecipeId(id);
 //    }
