@@ -14,6 +14,7 @@ public class MD5 {
 
             // digest() method is called to calculate message digest
             //  of an input digest() return array of byte
+            input = input+Salt.RANDOM.getValue();
             byte[] messageDigest = md.digest(input.getBytes());
 
             // Convert byte array into signum representation
