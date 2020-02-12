@@ -121,8 +121,8 @@ public class Recipe implements Serializable {
 
     @Transient
     public Double getAverageRating() {
-        if (ratings == null) {
-            return null;
+        if (ratings == null || ratings.size()==0) {
+            return 0D;
         }
         Double sum = 0D;
         for (Rating rating : ratings) {

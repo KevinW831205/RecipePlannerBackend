@@ -21,7 +21,7 @@ public class RatingService {
     }
 
     public Rating findById(Long id) {
-        return ratingRepository.findById(id).get();
+        return ratingRepository.findById(id).orElse(null);
     }
 
     public Rating create(Rating rating) {
