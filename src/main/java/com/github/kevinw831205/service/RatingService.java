@@ -1,7 +1,6 @@
 package com.github.kevinw831205.service;
 
 import com.github.kevinw831205.model.Rating;
-import com.github.kevinw831205.model.Recipe;
 import com.github.kevinw831205.repository.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,7 +50,7 @@ public class RatingService {
                 return true;
             }
             return false;
-        }).findFirst().get();
+        }).findFirst().orElse(null);
 
         return result;
     }
