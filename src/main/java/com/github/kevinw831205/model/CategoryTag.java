@@ -19,6 +19,7 @@ public class CategoryTag implements Serializable {
     private Long id;
 
     @NotBlank(message = "must have name")
+    @Column(unique = true)
     private String name;
 
     @ManyToMany(mappedBy = "categoryTags",fetch = FetchType.LAZY)
