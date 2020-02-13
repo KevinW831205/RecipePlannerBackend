@@ -159,6 +159,15 @@ public class RecipeService {
     }
 
 
+    public Recipe removeTag(Long recipe_id, Long tag_id) {
+        Recipe recipe = recipeRepository.findById(recipe_id).get();
+        CategoryTag categoryTag = categoryTagRepository.findById(tag_id).get();
+        recipe.getCategoryTags().remove(categoryTag);
+        return recipeRepository.save(recipe);
+
+    }
+
+
     public Recipe togglePublished(Long id) {
         Recipe recipe = recipeRepository.findById(id).get();
         recipe.setPublished(!recipe.getPublished());
@@ -182,4 +191,5 @@ public class RecipeService {
         recipe.setDescription(description);
         return recipeRepository.save(recipe);
     }
+
 }

@@ -78,10 +78,18 @@ public class RecipeController {
         return responseEntity;
     }
 
-    @RequestMapping(value = "/add-tag", method = RequestMethod.PUT)
+    @RequestMapping(value = "/tag", method = RequestMethod.PUT)
     // example: http://localhost:8080/api/recipe/add-tag?recipe_id=1&tag_id=1
     public ResponseEntity<?> addTag(@RequestParam Long recipe_id, @RequestParam Long tag_id) {
         Recipe responseBody = recipeService.addTag(recipe_id, tag_id);
+        ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
+        return responseEntity;
+    }
+
+    @RequestMapping(value = "/tag", method = RequestMethod.DELETE)
+    // example: http://localhost:8080/api/recipe/add-tag?recipe_id=1&tag_id=1
+    public ResponseEntity<?> removeTag(@RequestParam Long recipe_id, @RequestParam Long tag_id) {
+        Recipe responseBody = recipeService.removeTag(recipe_id, tag_id);
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }
