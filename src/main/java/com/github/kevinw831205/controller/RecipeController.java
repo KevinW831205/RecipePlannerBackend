@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Locale;
 
 @RequestMapping(value = "/api/recipe")
 @Controller
@@ -93,6 +94,7 @@ public class RecipeController {
         ResponseEntity responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }
+
 
     @RequestMapping(value = "/name/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<?> patchName(@PathVariable Long id, @RequestParam String name) {
