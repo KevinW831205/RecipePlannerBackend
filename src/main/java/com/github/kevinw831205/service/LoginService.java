@@ -24,6 +24,7 @@ public class LoginService {
     private Boolean validateLogin(Login login, Account account) {
         String encryptedLoginPassword = MD5.getMd5(login.getPassword());
         return encryptedLoginPassword.equals(account.getPassword());
+
     }
 
 
@@ -31,10 +32,10 @@ public class LoginService {
 
         List<Account> accountList = this.accountRepository.findByUserName(loginInfo.getUsername());
 
-        if (accountList.size()>0){
+        if (accountList.size() > 0) {
             Account account = accountList.get(0);
             AccountJSON accountJSON = new AccountJSON(account);
-            if(validateLogin(loginInfo, account)){
+            if (validateLogin(loginInfo, account)) {
                 return accountJSON;
             } else {
                 return null;

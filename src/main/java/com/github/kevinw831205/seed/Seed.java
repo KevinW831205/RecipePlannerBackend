@@ -37,14 +37,14 @@ public class Seed {
         this.accountRepository.save(demoUser);
 
         Account demoAdmin = new Account();
-        demoUser.setUsername("demoadmin");
-        demoUser.setPassword(MD5.getMd5("demo123"));
-        demoUser.setProfileImageUrl("https://via.placeholder.com/150");
-        demoUser.setAdmin(true);
+        demoAdmin.setUsername("demoadmin");
+        demoAdmin.setPassword(MD5.getMd5("demo123"));
+        demoAdmin.setProfileImageUrl("https://via.placeholder.com/150");
+        demoAdmin.setAdmin(true);
         this.accountRepository.save(demoAdmin);
     }
 
-    private void seedTags(){
+    private void seedTags() {
         CategoryTag tag = new CategoryTag();
         tag.setName("breakfast");
         categoryTagRepository.save(tag);
