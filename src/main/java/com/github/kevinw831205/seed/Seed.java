@@ -49,13 +49,13 @@ public class Seed {
         tag.setName("breakfast");
         categoryTagRepository.save(tag);
         tag = new CategoryTag();
-        tag.setName("italian");
+        tag.setName("lunch");
+        categoryTagRepository.save(tag);
+        tag = new CategoryTag();
+        tag.setName("dinner");
         categoryTagRepository.save(tag);
         tag = new CategoryTag();
         tag.setName("steak");
-        categoryTagRepository.save(tag);
-        tag = new CategoryTag();
-        tag.setName("asian");
         categoryTagRepository.save(tag);
     }
 
