@@ -6,17 +6,18 @@ import com.github.kevinw831205.model.SignupInfo;
 import com.github.kevinw831205.repository.AccountRepository;
 import com.github.kevinw831205.security.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
 public class AccountService {
     private AccountRepository accountRepository;
+
+    @Value("${app.salt}")
+    private String salt;
 
     @Autowired
     public AccountService(AccountRepository accountRepository) {
@@ -52,7 +53,7 @@ public class AccountService {
         Account account = new Account();
         account.setUsername(signupInfo.getUsername());
         String password = signupInfo.getPassword();
-        account.setPassword(MD5.getMd5(password));
+        account.setPassword(MD5.getMd5(password,salt));
         account.setProfileImageUrl("https://via.placeholder.com/150");
         account.setAdmin(false);
         return new AccountJSON(accountRepository.save(account));
@@ -60,7 +61,7 @@ public class AccountService {
 
     public AccountJSON createAdmin(Account account) {
         String password = account.getPassword();
-        account.setPassword(MD5.getMd5(password));
+        account.setPassword(MD5.getMd5(password,salt));
         account.setProfileImageUrl("https://via.placeholder.com/150");
         account.setAdmin(true);
         return new AccountJSON(accountRepository.save(account));

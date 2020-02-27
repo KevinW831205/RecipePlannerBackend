@@ -6,6 +6,7 @@ import com.github.kevinw831205.repository.AccountRepository;
 import com.github.kevinw831205.repository.CategoryTagRepository;
 import com.github.kevinw831205.security.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,10 @@ import java.util.List;
 public class Seed {
     private AccountRepository accountRepository;
     private CategoryTagRepository categoryTagRepository;
+
+    @Value("${app.salt}")
+    private String salt;
+
 
     @Autowired
     public Seed(AccountRepository accountRepository, CategoryTagRepository categoryTagRepository) {
@@ -30,26 +35,22 @@ public class Seed {
     }
 
     private void seedAccountTable() {
-        if (this.accountRepository.findByUserName("demouser").get(0) == null) {
+        if (this.accountRepository.findByUserName("demouser").isEmpty()) {
             Account demoUser = new Account();
             demoUser.setUsername("demouser");
-            demoUser.setPassword(MD5.getMd5("demo123"));
+            demoUser.setPassword(MD5.getMd5("demo123",salt));
             demoUser.setProfileImageUrl("https://via.placeholder.com/150");
             demoUser.setAdmin(false);
             this.accountRepository.save(demoUser);
 
-
-        }
-
-        if (this.accountRepository.findByUserName("demoadmin").get(0) == null) {
             Account demoAdmin = new Account();
             demoAdmin.setUsername("demoadmin");
-            demoAdmin.setPassword(MD5.getMd5("demo123"));
+            demoAdmin.setPassword(MD5.getMd5("demo123",salt));
             demoAdmin.setProfileImageUrl("https://via.placeholder.com/150");
             demoAdmin.setAdmin(true);
             this.accountRepository.save(demoAdmin);
-
         }
+
 
 
     }
