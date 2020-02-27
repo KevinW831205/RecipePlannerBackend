@@ -7,9 +7,10 @@ import com.github.kevinw831205.repository.CategoryTagRepository;
 import com.github.kevinw831205.security.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class Seed {
@@ -29,34 +30,46 @@ public class Seed {
     }
 
     private void seedAccountTable() {
-        Account demoUser = new Account();
-        demoUser.setUsername("demouser");
-        demoUser.setPassword(MD5.getMd5("demo123"));
-        demoUser.setProfileImageUrl("https://via.placeholder.com/150");
-        demoUser.setAdmin(false);
-        this.accountRepository.save(demoUser);
+        if (this.accountRepository.findByUserName("demouser").get(0) == null) {
+            Account demoUser = new Account();
+            demoUser.setUsername("demouser");
+            demoUser.setPassword(MD5.getMd5("demo123"));
+            demoUser.setProfileImageUrl("https://via.placeholder.com/150");
+            demoUser.setAdmin(false);
+            this.accountRepository.save(demoUser);
 
-        Account demoAdmin = new Account();
-        demoAdmin.setUsername("demoadmin");
-        demoAdmin.setPassword(MD5.getMd5("demo123"));
-        demoAdmin.setProfileImageUrl("https://via.placeholder.com/150");
-        demoAdmin.setAdmin(true);
-        this.accountRepository.save(demoAdmin);
+
+        }
+
+        if (this.accountRepository.findByUserName("demoadmin").get(0) == null) {
+            Account demoAdmin = new Account();
+            demoAdmin.setUsername("demoadmin");
+            demoAdmin.setPassword(MD5.getMd5("demo123"));
+            demoAdmin.setProfileImageUrl("https://via.placeholder.com/150");
+            demoAdmin.setAdmin(true);
+            this.accountRepository.save(demoAdmin);
+
+        }
+
+
     }
 
     private void seedTags() {
         CategoryTag tag = new CategoryTag();
-        tag.setName("breakfast");
-        categoryTagRepository.save(tag);
-        tag = new CategoryTag();
-        tag.setName("italian");
-        categoryTagRepository.save(tag);
-        tag = new CategoryTag();
-        tag.setName("steak");
-        categoryTagRepository.save(tag);
-        tag = new CategoryTag();
-        tag.setName("asian");
-        categoryTagRepository.save(tag);
+        List<CategoryTag> ct = (List<CategoryTag>) categoryTagRepository.findAll();
+        if (ct.isEmpty()) {
+            tag.setName("breakfast");
+            categoryTagRepository.save(tag);
+            tag = new CategoryTag();
+            tag.setName("italian");
+            categoryTagRepository.save(tag);
+            tag = new CategoryTag();
+            tag.setName("steak");
+            categoryTagRepository.save(tag);
+            tag = new CategoryTag();
+            tag.setName("asian");
+            categoryTagRepository.save(tag);
+        }
     }
 
 }
