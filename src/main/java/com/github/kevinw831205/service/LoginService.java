@@ -26,7 +26,7 @@ public class LoginService {
     }
 
     private Boolean validateLogin(Login login, Account account) {
-        String encryptedLoginPassword = MD5.getMd5(login.getPassword(),salt);
+        String encryptedLoginPassword = MD5.getMd5(login.getPassword(),this.salt);
         return encryptedLoginPassword.equals(account.getPassword());
 
     }
