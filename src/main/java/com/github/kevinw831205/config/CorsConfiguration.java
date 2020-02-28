@@ -16,7 +16,7 @@ public class CorsConfiguration {
                         .allowedOrigins("http://localhost:4200",
                                 "http://localhost:8080",
                                 "http://recipe-planner-frontend.s3-website-us-east-1.amazonaws.com",
-                                "https://d1vuczoq7ekvcq.cloudfront.net/"
+                                "https://d1vuczoq7ekvcq.cloudfront.net"
                                 )
                         .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "HEAD");
             }
