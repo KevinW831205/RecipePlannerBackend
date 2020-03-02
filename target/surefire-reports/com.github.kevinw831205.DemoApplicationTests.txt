@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.github.kevinw831205.DemoApplicationTests
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.739 s - in com.github.kevinw831205.DemoApplicationTests
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.437 s - in com.github.kevinw831205.DemoApplicationTests
+>>>>>>> 27f9e3b041b29e5b003550196d7d6ea4becbeaca

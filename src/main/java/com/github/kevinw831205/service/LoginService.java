@@ -7,6 +7,7 @@ import com.github.kevinw831205.model.Login;
 import com.github.kevinw831205.repository.AccountRepository;
 import com.github.kevinw831205.security.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,13 +17,16 @@ public class LoginService {
 
     AccountRepository accountRepository;
 
+    @Value("${app.salt}")
+    private String salt;
+
     @Autowired
     public LoginService(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 
     private Boolean validateLogin(Login login, Account account) {
-        String encryptedLoginPassword = MD5.getMd5(login.getPassword());
+        String encryptedLoginPassword = MD5.getMd5(login.getPassword(),this.salt);
         return encryptedLoginPassword.equals(account.getPassword());
 
     }
@@ -42,7 +46,6 @@ public class LoginService {
             }
         }
         return null;
-
 
     }
 }

@@ -22,10 +22,12 @@ public class Account {
     private Long id;
 
     @Size(min = 6, max = 20, message = "username size must be greater than 6")
+    @NotNull
     @Column(unique = true)
     private String username;
 
     @Size(message = "password size must be greater than 6")
+    @NotNull
     private String password;
 
     private Boolean isAdmin;

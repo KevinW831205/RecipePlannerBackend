@@ -1,20 +1,23 @@
 package com.github.kevinw831205.security;
 
 
+import org.springframework.stereotype.Component;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-
+@Component
 public class MD5 {
-    public static String getMd5(String input) {
+
+    public static String getMd5(String input, String salt) {
         try {
             // Static getInstance method is called with hashing MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
 
             // digest() method is called to calculate message digest
             //  of an input digest() return array of byte
-            input = input + Salt.RANDOM.getValue();
+            input = input + salt;
             byte[] messageDigest = md.digest(input.getBytes());
 
             // Convert byte array into signum representation
@@ -33,4 +36,5 @@ public class MD5 {
             throw new RuntimeException(e);
         }
     }
+
 }
