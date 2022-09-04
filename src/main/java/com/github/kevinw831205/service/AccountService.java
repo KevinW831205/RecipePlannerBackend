@@ -56,6 +56,7 @@ public class AccountService {
         account.setPassword(MD5.getMd5(password,salt));
         account.setProfileImageUrl("https://via.placeholder.com/150");
         account.setAdmin(false);
+        System.out.println(accountRepository.save(account));
         return new AccountJSON(accountRepository.save(account));
     }
 

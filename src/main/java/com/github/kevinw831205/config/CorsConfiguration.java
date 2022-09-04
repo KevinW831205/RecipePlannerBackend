@@ -15,6 +15,7 @@ public class CorsConfiguration {
                 registry.addMapping("/**")
                         .allowedOrigins("http://localhost:4200",
                                 "http://localhost:8080",
+                                "http://localhost:5000",
                                 "http://recipe-planner-frontend.s3-website-us-east-1.amazonaws.com",
                                 "https://d1vuczoq7ekvcq.cloudfront.net"
                                 )
